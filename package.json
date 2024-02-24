@@ -3,8 +3,8 @@
   "packageManager": "yarn@3.6.2",
   "scripts": {
     "dev": "npx nodemon",
-    "build": "rimraf ./build && tsc",
-    "preview": "npm run build && node build/index.js"
+    "build": "rimraf ./dist && tsc",
+    "preview": "npm run build && node dist/index.js"
   },
   "devDependencies": {
     "@types/node": "^20.11.20",

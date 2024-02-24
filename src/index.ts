@@ -1,18 +1,14 @@
 import * as HyperExpress from 'hyper-express';
+import { bootstrap } from './bootstrap';
 
-const webserver = new HyperExpress.Server();
+const server = new HyperExpress.Server();
+bootstrap(server);
 
-// Create GET route to serve 'Hello World'
-webserver.get('/', (request, response) => {
-  response.send('Hello World');
-});
-
-// Activate webserver by calling .listen(port, callback);
-webserver
+server
   .listen(80)
   .then((socket) => {
     console.log('Webserver started on port 80');
   })
   .catch((error) => {
-    console.log('Failed to start webserver on port 80');
+    console.log('Failed to start server on port 80', error);
   });

@@ -6,7 +6,7 @@ bootstrap(server);
 
 server
   .listen(80)
-  .then((socket) => {
+  .then(() => {
     console.log('Webserver started on port 80');
   })
   .catch((error) => {

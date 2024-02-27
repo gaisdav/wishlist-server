@@ -5,8 +5,10 @@ export interface IUserEntity {
   lastName: string;
   bio?: string;
   avatarSrc?: string;
-  birthdate: Date;
+  birthdate: string;
   email: string;
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IUserCreateDTO extends Omit<IUserEntity, 'id' | 'createdAt' | 'updatedAt'> {}

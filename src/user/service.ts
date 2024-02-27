@@ -1,11 +1,11 @@
 import { type Repository } from 'typeorm/repository/Repository';
 import { type DeleteResult, type UpdateResult } from 'typeorm';
-import type { IUserEntity } from './types';
+import { type IUserCreateDTO, type IUserEntity } from './types';
 
 export class UserService {
   constructor(private readonly userRepository: Repository<IUserEntity>) {}
 
-  async create(createUserDto: any): Promise<IUserEntity> {
+  async create(createUserDto: IUserCreateDTO): Promise<IUserEntity> {
     return await this.userRepository.save(createUserDto);
   }
 

@@ -1,12 +1,11 @@
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
+import { type IRequestBody } from './common/types';
 
 // TODO доделать
-export const validateBody = async <T, R>(dto: T, body: R) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const plainedDTO = plainToInstance(dto, body);
-  const errors = await validate(plainedDTO);
+export const parseBodyToDTO = async <D = unknown, B = IRequestBody>(dto: D, body: B) => {
+  const DTOInstance = plainToInstance<D, B>(dto, body);
+  const errors = await validate(DTOInstance);
 
-  return [dto, errors];
+  return { dto: DTOInstance, errors };
 };

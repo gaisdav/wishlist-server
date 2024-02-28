@@ -1,15 +1,21 @@
 import { type IUserCreateDTO } from '../types';
-import { IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString, IsEmail, IsDateString } from 'class-validator';
 
 export class CreateUserDTO implements IUserCreateDTO {
   @IsString()
   username: string;
+
+  @IsEmail()
+  email: string;
 
   @IsString()
   firstName: string;
 
   @IsString()
   lastName: string;
+
+  @IsDateString()
+  birthdate: string;
 
   @IsString()
   @IsOptional()
@@ -18,10 +24,4 @@ export class CreateUserDTO implements IUserCreateDTO {
   @IsString()
   @IsOptional()
   avatarSrc?: string;
-
-  @IsString()
-  birthdate: string;
-
-  @IsString()
-  email: string;
 }

@@ -1,9 +1,10 @@
 import { type Server } from 'hyper-express';
-import { AuthController } from './auth/controller';
-import { UserController } from './user/controller';
-import { User } from './user/entity';
+import { AuthController } from './modules/auth/controller';
+import { UserController } from './modules/user/controller';
+import { User } from './modules/user/entity';
 import { DataSource } from 'typeorm';
-import { UserService } from './user/service';
+import { UserService } from './modules/user/service';
+import { UserRepository } from './modules/user/repository';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
   const dataSource = new DataSource({
@@ -22,9 +23,10 @@ export const bootstrap = async (server: Server): Promise<Server> => {
 
   await dataSource.initialize();
 
-  const userRepository = dataSource.getRepository(User);
+  const userRepository = new UserRepository(dataSource.getRepository(User));
+  const userService = new UserService(userRepository);
 
-  const controllers = [new AuthController(), new UserController(new UserService(userRepository))];
+  const controllers = [new AuthController(), new UserController(userService)];
 
   for (const controller of controllers) {
     controller.init(server);

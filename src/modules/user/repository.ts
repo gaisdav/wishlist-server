@@ -1,27 +1,27 @@
 import { type Repository } from 'typeorm/repository/Repository';
 import { type DeleteResult, type UpdateResult } from 'typeorm';
-import { type IUserCreateDTO, type IUserEntity } from './types';
+import { type IUserCreateDTO, type IUserEntity, type IUserRepository } from './types';
 
-export class UserService {
-  constructor(private readonly userRepository: Repository<IUserEntity>) {}
+export class UserRepository implements IUserRepository {
+  constructor(private readonly repository: Repository<IUserEntity>) {}
 
   async create(createUserDto: IUserCreateDTO): Promise<IUserEntity> {
-    return await this.userRepository.save(createUserDto);
+    return await this.repository.save(createUserDto);
   }
 
   async findAll(): Promise<IUserEntity[]> {
-    return await this.userRepository.find();
+    return await this.repository.find();
   }
 
   async findOne(id: number): Promise<IUserEntity | null> {
-    return await this.userRepository.findOneBy({ id });
+    return await this.repository.findOneBy({ id });
   }
 
   async update(id: number, updateUserDto: Partial<IUserEntity>): Promise<UpdateResult> {
-    return await this.userRepository.update({ id }, updateUserDto);
+    return await this.repository.update({ id }, updateUserDto);
   }
 
   async remove(id: number): Promise<DeleteResult> {
-    return await this.userRepository.delete(id);
+    return await this.repository.delete(id);
   }
 }

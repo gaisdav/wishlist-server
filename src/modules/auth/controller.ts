@@ -1,5 +1,5 @@
 import { type Server, type Request, type Response } from 'hyper-express';
-import { AbstractController } from '../AbstractController';
+import { AbstractController } from '../../AbstractController';
 
 export class AuthController extends AbstractController {
   init = (server: Server): void => {

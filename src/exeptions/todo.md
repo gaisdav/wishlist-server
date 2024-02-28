@@ -1,7 +1,4 @@
-- validation exception
-- not found exception
 - not authorized exception
 - not authenticated exception
 - bad request exception
-- forbidden exception  
 - etc.

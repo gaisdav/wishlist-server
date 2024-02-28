@@ -4,16 +4,19 @@ import { type IRequest, type IRequestBody, type IResponse } from '../../common/t
 import { type IUserService } from './types';
 
 export class UserController extends AbstractController {
-  // TODO use interface IUserService
   constructor(private readonly service: IUserService) {
     super();
   }
 
   create = async (req: IRequest, res: IResponse): Promise<void> => {
-    const body: IRequestBody = await req.json();
+    try {
+      const body: IRequestBody = await req.json();
 
-    const user = await this.service.create(body);
-    res.json(user);
+      const user = await this.service.create(body);
+      res.json(user);
+    } catch (err) {
+      this.errorHandler(res, err);
+    }
   };
 
   getList = async (req: IRequest, res: IResponse): Promise<void> => {

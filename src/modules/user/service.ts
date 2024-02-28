@@ -1,9 +1,10 @@
 import { type DeleteResult, type UpdateResult } from 'typeorm';
 import { type IUserEntity, type IUserRepository, type IUserService } from './types';
-import { plainToClass, plainToInstance } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 import { CreateUserDTO } from './dto/create';
 import { validate } from 'class-validator';
-import { type IRequest, type IRequestBody } from '../../common/types';
+import { type IRequestBody } from '../../common/types';
+import { ValidationException } from '../../exeptions/ValidationException';
 
 export class UserService implements IUserService {
   constructor(private readonly userRepository: IUserRepository) {}
@@ -13,8 +14,7 @@ export class UserService implements IUserService {
     const errors = await validate(userDTO);
 
     if (errors.length > 0) {
-      console.log(errors);
-      throw new Error('Validation failed');
+      throw new ValidationException('Validation failed', errors);
     }
 
     return await this.userRepository.create(userDTO);

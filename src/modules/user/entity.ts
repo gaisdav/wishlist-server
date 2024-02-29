@@ -6,16 +6,22 @@ export class User extends BaseEntity implements IUserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ unique: true })
+  username: string;
+
+  @Column({ unique: true })
+  email: string;
+
   @Column()
   firstName: string;
 
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ default: null })
   avatarSrc: string;
 
-  @Column()
+  @Column({ default: null })
   bio: string;
 
   @Column()
@@ -24,12 +30,6 @@ export class User extends BaseEntity implements IUserEntity {
   @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
-  email: string;
-
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @Column()
-  username: string;
 }

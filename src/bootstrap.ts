@@ -1,8 +1,8 @@
 import { type Server } from 'hyper-express';
+import { DataSource } from 'typeorm';
 import { AuthController } from './modules/auth/controller';
 import { UserController } from './modules/user/controller';
 import { User } from './modules/user/entity';
-import { DataSource } from 'typeorm';
 import { UserService } from './modules/user/service';
 import { UserRepository } from './modules/user/repository';
 

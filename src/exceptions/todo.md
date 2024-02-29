@@ -1,4 +1,0 @@
-- not authorized exception
-- not authenticated exception
-- bad request exception
-- etc.

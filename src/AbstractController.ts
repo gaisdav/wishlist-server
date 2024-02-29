@@ -1,5 +1,5 @@
 import { type Server } from 'hyper-express';
-import { Exception } from './exeptions/Exception';
+import { Exception } from './exceptions/Exception';
 import { type IResponse } from './common/types';
 
 export abstract class AbstractController {

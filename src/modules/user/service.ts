@@ -4,7 +4,7 @@ import { plainToInstance } from 'class-transformer';
 import { CreateUserDTO } from './dto/create';
 import { validate } from 'class-validator';
 import { type IRequestBody } from '../../common/types';
-import { ValidationException } from '../../exeptions/ValidationException';
+import { ValidationException } from '../../exceptions/ValidationException';
 
 export class UserService implements IUserService {
   constructor(private readonly userRepository: IUserRepository) {}

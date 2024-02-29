@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import * as HyperExpress from 'hyper-express';
 import { bootstrap } from './bootstrap';
 
 const app = new HyperExpress.Server();

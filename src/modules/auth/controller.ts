@@ -1,12 +1,14 @@
-import { type Server, type Request, type Response } from 'hyper-express';
+import { type Server } from 'hyper-express';
 import { AbstractController } from '../../AbstractController';
+import { type IAuthController } from './types';
+import { type IRequest, type IResponse } from '../../common/types';
 
-export class AuthController extends AbstractController {
+export class AuthController extends AbstractController implements IAuthController {
   init = (server: Server): void => {
-    server.get('/', this.sayHello);
+    server.post('/auth/google', this.authGoogle);
   };
 
-  sayHello = async (req: Request, res: Response): Promise<void> => {
+  authGoogle = async (req: IRequest, res: IResponse): Promise<void> => {
     res.send('Hello World');
   };
 }

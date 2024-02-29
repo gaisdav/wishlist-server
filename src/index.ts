@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import * as HyperExpress from 'hyper-express';
 import { bootstrap } from './bootstrap';
 
 const app = new HyperExpress.Server();
@@ -10,7 +9,7 @@ void bootstrap(app).then((server) => {
     .then(() => {
       console.log('Webserver started on port 80');
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       console.log('Failed to start server on port 80', error);
     });
 });

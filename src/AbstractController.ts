@@ -11,8 +11,8 @@ export abstract class AbstractController {
       res.status(error.statusCode).json(error);
     } else if (error instanceof QueryFailedError) {
       const exception = new Exception({
-        message: error.message,
         statusCode: 400,
+        message: error.message,
         name: error.name,
         error,
       });

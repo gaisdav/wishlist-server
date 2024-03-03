@@ -5,6 +5,11 @@ import { UserController } from './modules/user/controller';
 import { User } from './modules/user/entity';
 import { UserService } from './modules/user/service';
 import { UserRepository } from './modules/user/repository';
+import { NotFoundException } from './exceptions/NotFoundException';
+import { Wish } from './modules/wish/entity';
+import { WishRepository } from './modules/wish/repository';
+import { WishService } from './modules/wish/service';
+import { WishController } from './modules/wish/controller';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
   const dataSource = new DataSource({
@@ -14,7 +19,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
     username: 'postgres',
     password: 'postgres',
     database: 'postgres',
-    entities: [User],
+    entities: [User, Wish],
     logging: true,
     synchronize: true,
     subscribers: [],
@@ -24,13 +29,20 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   await dataSource.initialize();
 
   const userRepository = new UserRepository(dataSource.getRepository(User));
-  const userService = new UserService(userRepository);
+  const wishRepository = new WishRepository(dataSource.getRepository(Wish));
 
-  const controllers = [new AuthController(), new UserController(userService)];
+  const userService = new UserService(userRepository);
+  const wishService = new WishService(wishRepository);
+
+  const controllers = [new AuthController(), new UserController(userService), new WishController(wishService)];
 
   for (const controller of controllers) {
     controller.init(server);
   }
+
+  server.get('*', function (req, res) {
+    res.status(404).json(new NotFoundException('Not founded endpoint'));
+  });
 
   return server;
 };

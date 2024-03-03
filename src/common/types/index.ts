@@ -7,3 +7,9 @@ export interface IRequest extends ExpressRequest {
 }
 
 export interface IResponse extends ExpressResponse {}
+
+export interface IBaseEntity {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}

@@ -1,11 +1,11 @@
 import { type Server } from 'hyper-express';
 import { AbstractController } from '../../AbstractController';
 import { type IRequest, type IRequestBody, type IResponse } from '../../common/types';
-import { type IUserService } from './types';
+import { type IWishService } from './types';
 import { Endpoint } from '../../common/endpoints';
 
-export class UserController extends AbstractController {
-  constructor(private readonly service: IUserService) {
+export class WishController extends AbstractController {
+  constructor(private readonly service: IWishService) {
     super();
   }
 
@@ -26,7 +26,7 @@ export class UserController extends AbstractController {
   };
 
   init = (server: Server): void => {
-    server.post(Endpoint.USERS, this.create);
-    server.get(Endpoint.USERS, this.getList);
+    server.post(Endpoint.WISHES, this.create);
+    server.get(Endpoint.WISHES, this.getList);
   };
 }

@@ -1,5 +1,5 @@
 import { type Repository } from 'typeorm/repository/Repository';
-import { type DeleteResult, type UpdateResult } from 'typeorm';
+import { type DeleteResult, IsNull, Not, type UpdateResult } from 'typeorm';
 import { type IWishCreateDTO, type IWishEntity, type IWishRepository, type IWishUpdateDTO } from './types';
 
 export class WishRepository implements IWishRepository {
@@ -17,11 +17,15 @@ export class WishRepository implements IWishRepository {
     return await this.repository.findOneBy({ id });
   }
 
+  async findOneDeleted(id: number): Promise<IWishEntity | null> {
+    return await this.repository.findOne({ where: { id, deletedAt: Not(IsNull()) }, withDeleted: true });
+  }
+
   async update(id: number, updateWishDto: IWishUpdateDTO): Promise<UpdateResult> {
     return await this.repository.update({ id }, updateWishDto);
   }
 
   async remove(id: number): Promise<DeleteResult> {
-    return await this.repository.delete(id);
+    return await this.repository.softDelete(id);
   }
 }

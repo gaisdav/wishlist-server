@@ -17,14 +17,19 @@ export interface IWishRepository {
   create: (createWishDto: IWishCreateDTO) => Promise<IWishEntity>;
   findAll: () => Promise<IWishEntity[]>;
   findOne: (id: number) => Promise<IWishEntity | null>;
+  findOneDeleted: (id: number) => Promise<IWishEntity | null>;
   update: (id: number, updateWishDto: Partial<IWishEntity>) => Promise<UpdateResult>;
   remove: (id: number) => Promise<DeleteResult>;
+}
+
+export interface IWishServiceFindOneOptions {
+  withDeleted?: boolean;
 }
 
 export interface IWishService {
   create: (body: IRequestBody) => Promise<IWishEntity>;
   findAll: () => Promise<IWishEntity[]>;
-  findOne: (id: number) => Promise<IWishEntity | null>;
-  update: (id: number, updateWishDto: Partial<IWishEntity>) => Promise<IWishEntity | null>;
-  remove: (id: number) => Promise<DeleteResult>;
+  findOne: (id: number, options?: IWishServiceFindOneOptions) => Promise<IWishEntity>;
+  update: (id: number, updateWishDto: Partial<IWishEntity>) => Promise<IWishEntity>;
+  remove: (id: number) => Promise<void>;
 }

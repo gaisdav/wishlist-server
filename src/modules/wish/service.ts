@@ -1,5 +1,4 @@
-import { type DeleteResult } from 'typeorm';
-import { type IWishEntity, type IWishRepository, type IWishService, type IWishServiceFindOneOptions } from './types';
+import { type IWishEntity, type IWishRepository, type IWishService } from './types';
 import { plainToInstance } from 'class-transformer';
 import { CreateWishDTO } from './dto/create';
 import { type IRequestBody } from '../../common/types';

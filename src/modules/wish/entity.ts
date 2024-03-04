@@ -1,9 +1,9 @@
 import { type IWishEntity } from './types';
-import { BaseEntity } from '../../common/Entity';
 import { Column, Entity } from 'typeorm';
+import { ArchivedBaseEntity } from '../../common/ArchivedBaseEntity';
 
 @Entity('wishes')
-export class Wish extends BaseEntity implements IWishEntity {
+export class Wish extends ArchivedBaseEntity implements IWishEntity {
   @Column()
   title: string;
 

@@ -1,4 +1,10 @@
-import { BaseEntity as TypeormBaseEntity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  BaseEntity as TypeormBaseEntity,
+  CreateDateColumn,
+  DeleteDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { type IBaseEntity } from './types';
 
 export class BaseEntity extends TypeormBaseEntity implements IBaseEntity {
@@ -10,4 +16,7 @@ export class BaseEntity extends TypeormBaseEntity implements IBaseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 }

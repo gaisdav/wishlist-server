@@ -26,22 +26,40 @@ export const bootstrap = async (server: Server): Promise<Server> => {
     migrations: [],
   });
 
+  /**
+   * Initialize database connection
+   */
   await dataSource.initialize();
 
+  /**
+   * Repositories
+   */
   const userRepository = new UserRepository(dataSource.getRepository(User));
   const wishRepository = new WishRepository(dataSource.getRepository(Wish));
 
+  /**
+   * Services
+   */
   const userService = new UserService(userRepository);
   const wishService = new WishService(wishRepository);
 
+  /**
+   * Controllers
+   */
   const controllers = [new AuthController(), new UserController(userService), new WishController(wishService)];
 
+  /**
+   * Init server in controllers
+   */
   for (const controller of controllers) {
     controller.init(server);
   }
 
-  server.get('*', function (req, res) {
-    res.status(404).json(new NotFoundException('Not founded endpoint'));
+  /**
+   * 404 handler
+   */
+  server.all('*', function (req, res) {
+    res.status(404).json(new NotFoundException('Route not found'));
   });
 
   return server;

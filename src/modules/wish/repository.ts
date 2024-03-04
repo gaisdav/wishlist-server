@@ -1,6 +1,6 @@
 import { type Repository } from 'typeorm/repository/Repository';
 import { type DeleteResult, type UpdateResult } from 'typeorm';
-import { type IWishCreateDTO, type IWishEntity, type IWishRepository } from './types';
+import { type IWishCreateDTO, type IWishEntity, type IWishRepository, type IWishUpdateDTO } from './types';
 
 export class WishRepository implements IWishRepository {
   constructor(private readonly repository: Repository<IWishEntity>) {}
@@ -17,7 +17,7 @@ export class WishRepository implements IWishRepository {
     return await this.repository.findOneBy({ id });
   }
 
-  async update(id: number, updateWishDto: Partial<IWishEntity>): Promise<UpdateResult> {
+  async update(id: number, updateWishDto: IWishUpdateDTO): Promise<UpdateResult> {
     return await this.repository.update({ id }, updateWishDto);
   }
 

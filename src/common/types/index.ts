@@ -12,4 +12,9 @@ export interface IBaseEntity {
   id: number;
   createdAt: Date;
   updatedAt: Date;
+  deletedAt: Date;
+}
+
+export interface IArchivedBaseEntity extends IBaseEntity {
+  archivedAt: Date;
 }

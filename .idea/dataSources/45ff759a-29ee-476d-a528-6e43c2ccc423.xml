@@ -3,15 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-4||-9223372036854775808|c|G
-4||10|c|G
-4||10|C|G
-4||10|T|G</Grants>
-      <IntrospectionStateNumber>757</IntrospectionStateNumber>
+      <IntrospectionStateNumber>824</IntrospectionStateNumber>
       <ServerVersion>16.2</ServerVersion>
       <StartupTime>1709110249</StartupTime>
       <TimeZones>true ACDT
@@ -810,7 +802,7 @@ false posixrules
 13255||10|C|G
 13255||-9223372036854775808|U|G
 13255||10|U|G</Grants>
-      <IntrospectionStateNumber>757</IntrospectionStateNumber>
+      <IntrospectionStateNumber>824</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4229,8 +4221,8 @@ false posixrules
     <schema id="263" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>757</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-02-29.19:37:48</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>824</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-03-04.07:34:28</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4243,13 +4235,27 @@ false posixrules
       <StateNumber>731</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="265" parent="263" name="users">
+    <sequence id="265" parent="263" name="wishes_id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>24599</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>821</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="266" parent="263" name="users">
       <ObjectId>16385</ObjectId>
       <StateNumber>744</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="266" parent="265" name="id">
+    <table id="267" parent="263" name="wishes">
+      <ObjectId>24600</ObjectId>
+      <StateNumber>821</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="268" parent="266" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4258,33 +4264,33 @@ false posixrules
       <SequenceId>16384</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="267" parent="265" name="firstName">
+    <column id="269" parent="266" name="firstName">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>731</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="268" parent="265" name="lastName">
+    <column id="270" parent="266" name="lastName">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>731</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="269" parent="265" name="avatarSrc">
+    <column id="271" parent="266" name="avatarSrc">
       <DasType>varchar|0s</DasType>
       <Position>4</Position>
       <StateNumber>749</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="270" parent="265" name="bio">
+    <column id="272" parent="266" name="bio">
       <DasType>varchar|0s</DasType>
       <Position>5</Position>
       <StateNumber>750</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="271" parent="265" name="createdAt">
+    <column id="273" parent="266" name="createdAt">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4292,14 +4298,14 @@ false posixrules
       <StateNumber>731</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="272" parent="265" name="email">
+    <column id="274" parent="266" name="email">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StateNumber>731</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="273" parent="265" name="updatedAt">
+    <column id="275" parent="266" name="updatedAt">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4307,21 +4313,21 @@ false posixrules
       <StateNumber>731</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="274" parent="265" name="username">
+    <column id="276" parent="266" name="username">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StateNumber>731</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="275" parent="265" name="birthdate">
+    <column id="277" parent="266" name="birthdate">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
       <StateNumber>744</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="276" parent="265" name="PK_a3ffb1c0c8416b9fc6f907b7433">
+    <index id="278" parent="266" name="PK_a3ffb1c0c8416b9fc6f907b7433">
       <ColNames>id</ColNames>
       <ObjectId>16393</ObjectId>
       <Primary>1</Primary>
@@ -4329,11 +4335,112 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="277" parent="265" name="PK_a3ffb1c0c8416b9fc6f907b7433">
+    <index id="279" parent="266" name="UQ_97672ac88f789774dd47f7c8be3">
+      <ColNames>email</ColNames>
+      <ObjectId>24586</ObjectId>
+      <StateNumber>760</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <index id="280" parent="266" name="UQ_fe0bb3f6520ee0469504521e710">
+      <ColNames>username</ColNames>
+      <ObjectId>24584</ObjectId>
+      <StateNumber>760</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="281" parent="266" name="PK_a3ffb1c0c8416b9fc6f907b7433">
       <ObjectId>16394</ObjectId>
       <Primary>1</Primary>
       <StateNumber>731</StateNumber>
       <UnderlyingIndexId>16393</UnderlyingIndexId>
+    </key>
+    <key id="282" parent="266" name="UQ_97672ac88f789774dd47f7c8be3">
+      <ObjectId>24587</ObjectId>
+      <StateNumber>760</StateNumber>
+      <UnderlyingIndexId>24586</UnderlyingIndexId>
+    </key>
+    <key id="283" parent="266" name="UQ_fe0bb3f6520ee0469504521e710">
+      <ObjectId>24585</ObjectId>
+      <StateNumber>760</StateNumber>
+      <UnderlyingIndexId>24584</UnderlyingIndexId>
+    </key>
+    <column id="284" parent="267" name="id">
+      <DasType>integer|0s</DasType>
+      <DefaultExpression>nextval(&apos;wishes_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>821</StateNumber>
+      <SequenceId>24599</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="285" parent="267" name="createdAt">
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>821</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="286" parent="267" name="updatedAt">
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>821</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="287" parent="267" name="deletedAt">
+      <DasType>timestamp|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>821</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="288" parent="267" name="archivedAt">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>821</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="289" parent="267" name="title">
+      <DasType>varchar|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>821</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="290" parent="267" name="description">
+      <DasType>varchar|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>821</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="291" parent="267" name="imageSrc">
+      <DasType>varchar|0s</DasType>
+      <Position>8</Position>
+      <StateNumber>821</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="292" parent="267" name="PK_9c08d144e42ca0aa37a024597ad">
+      <ColNames>id</ColNames>
+      <ObjectId>24608</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>821</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="293" parent="267" name="PK_9c08d144e42ca0aa37a024597ad">
+      <ObjectId>24609</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>821</StateNumber>
+      <UnderlyingIndexId>24608</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

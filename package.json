@@ -1,6 +1,6 @@
 {
   "name": "wishlist-server",
-  "packageManager": "yarn@3.6.2",
+  "packageManager": "yarn@4.1.1",
   "scripts": {
     "dev": "npx nodemon",
     "build": "rimraf ./dist && tsc",

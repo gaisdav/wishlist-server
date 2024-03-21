@@ -29,8 +29,8 @@ const RAW_RUNTIME_STATE =
           ["@types/cors", "npm:2.8.17"],\
           ["@types/node", "npm:20.11.23"],\
           ["@types/passport", "npm:1.0.16"],\
-          ["@types/passport-google-oauth20", "npm:2.0.14"],\
           ["@typescript-eslint/eslint-plugin", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.21.0"],\
+          ["axios", "npm:1.6.8"],\
           ["class-transformer", "npm:0.5.1"],\
           ["class-validator", "npm:0.14.1"],\
           ["cors", "npm:2.8.5"],\
@@ -41,10 +41,10 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-import", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:2.29.1"],\
           ["eslint-plugin-n", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:16.6.2"],\
           ["eslint-plugin-promise", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.1.1"],\
+          ["google-auth-library", "npm:9.7.0"],\
           ["hyper-express", "npm:6.14.12"],\
           ["nodemon", "npm:3.1.0"],\
           ["passport", "npm:0.7.0"],\
-          ["passport-google-oauth20", "npm:2.0.0"],\
           ["pg", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:8.11.3"],\
           ["pre-commit", "npm:1.2.2"],\
           ["prettier", "npm:3.2.5"],\
@@ -446,46 +446,12 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@types/oauth", [\
-      ["npm:0.9.4", {\
-        "packageLocation": "./.yarn/cache/@types-oauth-npm-0.9.4-b4020aaf3f-1754d34e18.zip/node_modules/@types/oauth/",\
-        "packageDependencies": [\
-          ["@types/oauth", "npm:0.9.4"],\
-          ["@types/node", "npm:20.11.24"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["@types/passport", [\
       ["npm:1.0.16", {\
         "packageLocation": "./.yarn/cache/@types-passport-npm-1.0.16-7f245434f2-0ee7b9a461.zip/node_modules/@types/passport/",\
         "packageDependencies": [\
           ["@types/passport", "npm:1.0.16"],\
           ["@types/express", "npm:4.17.21"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/passport-google-oauth20", [\
-      ["npm:2.0.14", {\
-        "packageLocation": "./.yarn/cache/@types-passport-google-oauth20-npm-2.0.14-04b5e08321-e43192aa4a.zip/node_modules/@types/passport-google-oauth20/",\
-        "packageDependencies": [\
-          ["@types/passport-google-oauth20", "npm:2.0.14"],\
-          ["@types/express", "npm:4.17.21"],\
-          ["@types/passport", "npm:1.0.16"],\
-          ["@types/passport-oauth2", "npm:1.4.15"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/passport-oauth2", [\
-      ["npm:1.4.15", {\
-        "packageLocation": "./.yarn/cache/@types-passport-oauth2-npm-1.4.15-0080e2bf19-352c4e2d09.zip/node_modules/@types/passport-oauth2/",\
-        "packageDependencies": [\
-          ["@types/passport-oauth2", "npm:1.4.15"],\
-          ["@types/express", "npm:4.17.21"],\
-          ["@types/oauth", "npm:0.9.4"],\
-          ["@types/passport", "npm:1.0.16"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1057,12 +1023,33 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["asynckit", [\
+      ["npm:0.4.0", {\
+        "packageLocation": "./.yarn/cache/asynckit-npm-0.4.0-c718858525-3ce727cbc7.zip/node_modules/asynckit/",\
+        "packageDependencies": [\
+          ["asynckit", "npm:0.4.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["available-typed-arrays", [\
       ["npm:1.0.7", {\
         "packageLocation": "./.yarn/cache/available-typed-arrays-npm-1.0.7-e5e5d79687-6c9da3a66c.zip/node_modules/available-typed-arrays/",\
         "packageDependencies": [\
           ["available-typed-arrays", "npm:1.0.7"],\
           ["possible-typed-array-names", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["axios", [\
+      ["npm:1.6.8", {\
+        "packageLocation": "./.yarn/cache/axios-npm-1.6.8-85cf1e7152-3f9a79eaf1.zip/node_modules/axios/",\
+        "packageDependencies": [\
+          ["axios", "npm:1.6.8"],\
+          ["follow-redirects", "virtual:85cf1e7152e3c0d8e39e61ad2b81b59a43fb6bdb8f3bf49869bb97804b1403ecaee4505fcb0d4869cfdd99ee3eaa880b79498575407fb770c800bf64c64156ec#npm:1.15.6"],\
+          ["form-data", "npm:4.0.0"],\
+          ["proxy-from-env", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1085,11 +1072,11 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["base64url", [\
-      ["npm:3.0.1", {\
-        "packageLocation": "./.yarn/cache/base64url-npm-3.0.1-4c171c4917-a77b2a3a52.zip/node_modules/base64url/",\
+    ["bignumber.js", [\
+      ["npm:9.1.2", {\
+        "packageLocation": "./.yarn/cache/bignumber.js-npm-9.1.2-c2228c6a4a-d89b8800a9.zip/node_modules/bignumber.js/",\
         "packageDependencies": [\
-          ["base64url", "npm:3.0.1"]\
+          ["bignumber.js", "npm:9.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1139,6 +1126,15 @@ const RAW_RUNTIME_STATE =
           ["buffer", "npm:6.0.3"],\
           ["base64-js", "npm:1.5.1"],\
           ["ieee754", "npm:1.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["buffer-equal-constant-time", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "./.yarn/cache/buffer-equal-constant-time-npm-1.0.1-41826f3419-80bb945f5d.zip/node_modules/buffer-equal-constant-time/",\
+        "packageDependencies": [\
+          ["buffer-equal-constant-time", "npm:1.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1357,6 +1353,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["combined-stream", [\
+      ["npm:1.0.8", {\
+        "packageLocation": "./.yarn/cache/combined-stream-npm-1.0.8-dc14d4a63a-2e969e637d.zip/node_modules/combined-stream/",\
+        "packageDependencies": [\
+          ["combined-stream", "npm:1.0.8"],\
+          ["delayed-stream", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["concat-map", [\
       ["npm:0.0.1", {\
         "packageLocation": "./.yarn/cache/concat-map-npm-0.0.1-85a921b7ee-9680699c8e.zip/node_modules/concat-map/",\
@@ -1548,6 +1554,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["delayed-stream", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/delayed-stream-npm-1.0.0-c5a4c4cc02-46fe6e83e2.zip/node_modules/delayed-stream/",\
+        "packageDependencies": [\
+          ["delayed-stream", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["diff", [\
       ["npm:4.0.2", {\
         "packageLocation": "./.yarn/cache/diff-npm-4.0.2-73133c7102-ec09ec2101.zip/node_modules/diff/",\
@@ -1599,6 +1614,16 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/eastasianwidth-npm-0.2.0-c37eb16bd1-9b1d3e1bae.zip/node_modules/eastasianwidth/",\
         "packageDependencies": [\
           ["eastasianwidth", "npm:0.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["ecdsa-sig-formatter", [\
+      ["npm:1.0.11", {\
+        "packageLocation": "./.yarn/cache/ecdsa-sig-formatter-npm-1.0.11-b6784e7852-878e1aab8a.zip/node_modules/ecdsa-sig-formatter/",\
+        "packageDependencies": [\
+          ["ecdsa-sig-formatter", "npm:1.0.11"],\
+          ["safe-buffer", "npm:5.2.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2199,6 +2224,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["extend", [\
+      ["npm:3.0.2", {\
+        "packageLocation": "./.yarn/cache/extend-npm-3.0.2-e1ca07ac54-59e89e2dc7.zip/node_modules/extend/",\
+        "packageDependencies": [\
+          ["extend", "npm:3.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["fast-deep-equal", [\
       ["npm:3.1.3", {\
         "packageLocation": "./.yarn/cache/fast-deep-equal-npm-3.1.3-790edcfcf5-e21a9d8d84.zip/node_modules/fast-deep-equal/",\
@@ -2302,6 +2336,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["follow-redirects", [\
+      ["npm:1.15.6", {\
+        "packageLocation": "./.yarn/cache/follow-redirects-npm-1.15.6-50635fe51d-70c7612c4c.zip/node_modules/follow-redirects/",\
+        "packageDependencies": [\
+          ["follow-redirects", "npm:1.15.6"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:85cf1e7152e3c0d8e39e61ad2b81b59a43fb6bdb8f3bf49869bb97804b1403ecaee4505fcb0d4869cfdd99ee3eaa880b79498575407fb770c800bf64c64156ec#npm:1.15.6", {\
+        "packageLocation": "./.yarn/__virtual__/follow-redirects-virtual-7bb5ea93fd/0/cache/follow-redirects-npm-1.15.6-50635fe51d-70c7612c4c.zip/node_modules/follow-redirects/",\
+        "packageDependencies": [\
+          ["follow-redirects", "virtual:85cf1e7152e3c0d8e39e61ad2b81b59a43fb6bdb8f3bf49869bb97804b1403ecaee4505fcb0d4869cfdd99ee3eaa880b79498575407fb770c800bf64c64156ec#npm:1.15.6"],\
+          ["@types/debug", null],\
+          ["debug", null]\
+        ],\
+        "packagePeers": [\
+          "@types/debug",\
+          "debug"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["for-each", [\
       ["npm:0.3.3", {\
         "packageLocation": "./.yarn/cache/for-each-npm-0.3.3-0010ca8cdd-fdac0cde1b.zip/node_modules/for-each/",\
@@ -2319,6 +2375,18 @@ const RAW_RUNTIME_STATE =
           ["foreground-child", "npm:3.1.1"],\
           ["cross-spawn", "npm:7.0.3"],\
           ["signal-exit", "npm:4.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["form-data", [\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/form-data-npm-4.0.0-916facec2d-7264aa760a.zip/node_modules/form-data/",\
+        "packageDependencies": [\
+          ["form-data", "npm:4.0.0"],\
+          ["asynckit", "npm:0.4.0"],\
+          ["combined-stream", "npm:1.0.8"],\
+          ["mime-types", "npm:2.1.35"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2387,6 +2455,30 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/functions-have-names-npm-1.2.3-e5cf1e2208-0ddfd3ed10.zip/node_modules/functions-have-names/",\
         "packageDependencies": [\
           ["functions-have-names", "npm:1.2.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["gaxios", [\
+      ["npm:6.3.0", {\
+        "packageLocation": "./.yarn/cache/gaxios-npm-6.3.0-f976cdd784-7b24f64801.zip/node_modules/gaxios/",\
+        "packageDependencies": [\
+          ["gaxios", "npm:6.3.0"],\
+          ["extend", "npm:3.0.2"],\
+          ["https-proxy-agent", "npm:7.0.4"],\
+          ["is-stream", "npm:2.0.1"],\
+          ["node-fetch", "virtual:f976cdd78450adb6c367715806997ef8e7a7f1cea13a1c6de0e4794713067fab860cf15bc41e0f5a171c9a287049e9e20bbff6e10494a546fcd50f35a4d31f16#npm:2.7.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["gcp-metadata", [\
+      ["npm:6.1.0", {\
+        "packageLocation": "./.yarn/cache/gcp-metadata-npm-6.1.0-e1614654c8-a0d12a9cb7.zip/node_modules/gcp-metadata/",\
+        "packageDependencies": [\
+          ["gcp-metadata", "npm:6.1.0"],\
+          ["gaxios", "npm:6.3.0"],\
+          ["json-bigint", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2516,6 +2608,21 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["google-auth-library", [\
+      ["npm:9.7.0", {\
+        "packageLocation": "./.yarn/cache/google-auth-library-npm-9.7.0-2c75598300-9f255ba88f.zip/node_modules/google-auth-library/",\
+        "packageDependencies": [\
+          ["google-auth-library", "npm:9.7.0"],\
+          ["base64-js", "npm:1.5.1"],\
+          ["ecdsa-sig-formatter", "npm:1.0.11"],\
+          ["gaxios", "npm:6.3.0"],\
+          ["gcp-metadata", "npm:6.1.0"],\
+          ["gtoken", "npm:7.1.0"],\
+          ["jws", "npm:4.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["gopd", [\
       ["npm:1.0.1", {\
         "packageLocation": "./.yarn/cache/gopd-npm-1.0.1-10c1d0b534-5fbc7ad57b.zip/node_modules/gopd/",\
@@ -2540,6 +2647,17 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/graphemer-npm-1.4.0-0627732d35-6dd60dba97.zip/node_modules/graphemer/",\
         "packageDependencies": [\
           ["graphemer", "npm:1.4.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["gtoken", [\
+      ["npm:7.1.0", {\
+        "packageLocation": "./.yarn/cache/gtoken-npm-7.1.0-64216471c4-640392261e.zip/node_modules/gtoken/",\
+        "packageDependencies": [\
+          ["gtoken", "npm:7.1.0"],\
+          ["gaxios", "npm:6.3.0"],\
+          ["jws", "npm:4.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2960,6 +3078,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["is-stream", [\
+      ["npm:2.0.1", {\
+        "packageLocation": "./.yarn/cache/is-stream-npm-2.0.1-c802db55e7-b8e05ccdf9.zip/node_modules/is-stream/",\
+        "packageDependencies": [\
+          ["is-stream", "npm:2.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["is-string", [\
       ["npm:1.0.7", {\
         "packageLocation": "./.yarn/cache/is-string-npm-1.0.7-9f7066daed-2bc292fe92.zip/node_modules/is-string/",\
@@ -3062,6 +3189,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["json-bigint", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/json-bigint-npm-1.0.0-8e35bcb143-cd3973b88e.zip/node_modules/json-bigint/",\
+        "packageDependencies": [\
+          ["json-bigint", "npm:1.0.0"],\
+          ["bignumber.js", "npm:9.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["json-buffer", [\
       ["npm:3.0.1", {\
         "packageLocation": "./.yarn/cache/json-buffer-npm-3.0.1-f8f6d20603-8287615452.zip/node_modules/json-buffer/",\
@@ -3095,6 +3232,29 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["json5", "npm:1.0.2"],\
           ["minimist", "npm:1.2.8"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["jwa", [\
+      ["npm:2.0.0", {\
+        "packageLocation": "./.yarn/cache/jwa-npm-2.0.0-52a7c3f1ca-ab983f6685.zip/node_modules/jwa/",\
+        "packageDependencies": [\
+          ["jwa", "npm:2.0.0"],\
+          ["buffer-equal-constant-time", "npm:1.0.1"],\
+          ["ecdsa-sig-formatter", "npm:1.0.11"],\
+          ["safe-buffer", "npm:5.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["jws", [\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/jws-npm-4.0.0-2a24fd53b9-1d15f4cdea.zip/node_modules/jws/",\
+        "packageDependencies": [\
+          ["jws", "npm:4.0.0"],\
+          ["jwa", "npm:2.0.0"],\
+          ["safe-buffer", "npm:5.2.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3428,6 +3588,29 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["node-fetch", [\
+      ["npm:2.7.0", {\
+        "packageLocation": "./.yarn/cache/node-fetch-npm-2.7.0-587d57004e-b24f8a3dc9.zip/node_modules/node-fetch/",\
+        "packageDependencies": [\
+          ["node-fetch", "npm:2.7.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:f976cdd78450adb6c367715806997ef8e7a7f1cea13a1c6de0e4794713067fab860cf15bc41e0f5a171c9a287049e9e20bbff6e10494a546fcd50f35a4d31f16#npm:2.7.0", {\
+        "packageLocation": "./.yarn/__virtual__/node-fetch-virtual-5f8e74812c/0/cache/node-fetch-npm-2.7.0-587d57004e-b24f8a3dc9.zip/node_modules/node-fetch/",\
+        "packageDependencies": [\
+          ["node-fetch", "virtual:f976cdd78450adb6c367715806997ef8e7a7f1cea13a1c6de0e4794713067fab860cf15bc41e0f5a171c9a287049e9e20bbff6e10494a546fcd50f35a4d31f16#npm:2.7.0"],\
+          ["@types/encoding", null],\
+          ["encoding", null],\
+          ["whatwg-url", "npm:5.0.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/encoding",\
+          "encoding"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["node-gyp", [\
       ["npm:10.0.1", {\
         "packageLocation": "./.yarn/unplugged/node-gyp-npm-10.0.1-48708ce70b/node_modules/node-gyp/",\
@@ -3489,15 +3672,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/normalize-path-npm-3.0.0-658ba7d77f-88eeb4da89.zip/node_modules/normalize-path/",\
         "packageDependencies": [\
           ["normalize-path", "npm:3.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["oauth", [\
-      ["npm:0.10.0", {\
-        "packageLocation": "./.yarn/cache/oauth-npm-0.10.0-74adff7683-3568089799.zip/node_modules/oauth/",\
-        "packageDependencies": [\
-          ["oauth", "npm:0.10.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3696,30 +3870,6 @@ const RAW_RUNTIME_STATE =
           ["passport", "npm:0.7.0"],\
           ["passport-strategy", "npm:1.0.0"],\
           ["pause", "npm:0.0.1"],\
-          ["utils-merge", "npm:1.0.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["passport-google-oauth20", [\
-      ["npm:2.0.0", {\
-        "packageLocation": "./.yarn/cache/passport-google-oauth20-npm-2.0.0-4187da29c8-bfd1316ec7.zip/node_modules/passport-google-oauth20/",\
-        "packageDependencies": [\
-          ["passport-google-oauth20", "npm:2.0.0"],\
-          ["passport-oauth2", "npm:1.8.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["passport-oauth2", [\
-      ["npm:1.8.0", {\
-        "packageLocation": "./.yarn/cache/passport-oauth2-npm-1.8.0-bb6d58d7d4-31af6c5968.zip/node_modules/passport-oauth2/",\
-        "packageDependencies": [\
-          ["passport-oauth2", "npm:1.8.0"],\
-          ["base64url", "npm:3.0.1"],\
-          ["oauth", "npm:0.10.0"],\
-          ["passport-strategy", "npm:1.0.0"],\
-          ["uid2", "npm:0.0.4"],\
           ["utils-merge", "npm:1.0.1"]\
         ],\
         "linkType": "HARD"\
@@ -4021,6 +4171,15 @@ const RAW_RUNTIME_STATE =
           ["promise-retry", "npm:2.0.1"],\
           ["err-code", "npm:2.0.3"],\
           ["retry", "npm:0.12.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["proxy-from-env", [\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/proxy-from-env-npm-1.1.0-c13d07f26b-f0bb4a87cf.zip/node_modules/proxy-from-env/",\
+        "packageDependencies": [\
+          ["proxy-from-env", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4669,6 +4828,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["tr46", [\
+      ["npm:0.0.3", {\
+        "packageLocation": "./.yarn/cache/tr46-npm-0.0.3-de53018915-8f1f5aa6cb.zip/node_modules/tr46/",\
+        "packageDependencies": [\
+          ["tr46", "npm:0.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["ts-api-utils", [\
       ["npm:1.2.1", {\
         "packageLocation": "./.yarn/cache/ts-api-utils-npm-1.2.1-edd799bde4-6d7f60fd01.zip/node_modules/ts-api-utils/",\
@@ -4995,15 +5163,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["uid2", [\
-      ["npm:0.0.4", {\
-        "packageLocation": "./.yarn/cache/uid2-npm-0.0.4-cd02831b83-e92325ce2e.zip/node_modules/uid2/",\
-        "packageDependencies": [\
-          ["uid2", "npm:0.0.4"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["unbox-primitive", [\
       ["npm:1.0.2", {\
         "packageLocation": "./.yarn/cache/unbox-primitive-npm-1.0.2-cb56a05066-06e1ee41c1.zip/node_modules/unbox-primitive/",\
@@ -5119,6 +5278,26 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["webidl-conversions", [\
+      ["npm:3.0.1", {\
+        "packageLocation": "./.yarn/cache/webidl-conversions-npm-3.0.1-60310f6a2b-b65b9f8d68.zip/node_modules/webidl-conversions/",\
+        "packageDependencies": [\
+          ["webidl-conversions", "npm:3.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["whatwg-url", [\
+      ["npm:5.0.0", {\
+        "packageLocation": "./.yarn/cache/whatwg-url-npm-5.0.0-374fb45e60-f95adbc1e8.zip/node_modules/whatwg-url/",\
+        "packageDependencies": [\
+          ["whatwg-url", "npm:5.0.0"],\
+          ["tr46", "npm:0.0.3"],\
+          ["webidl-conversions", "npm:3.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["which", [\
       ["npm:1.2.14", {\
         "packageLocation": "./.yarn/cache/which-npm-1.2.14-dd68f18c46-e809936d40.zip/node_modules/which/",\
@@ -5189,8 +5368,8 @@ const RAW_RUNTIME_STATE =
           ["@types/cors", "npm:2.8.17"],\
           ["@types/node", "npm:20.11.23"],\
           ["@types/passport", "npm:1.0.16"],\
-          ["@types/passport-google-oauth20", "npm:2.0.14"],\
           ["@typescript-eslint/eslint-plugin", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.21.0"],\
+          ["axios", "npm:1.6.8"],\
           ["class-transformer", "npm:0.5.1"],\
           ["class-validator", "npm:0.14.1"],\
           ["cors", "npm:2.8.5"],\
@@ -5201,10 +5380,10 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-import", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:2.29.1"],\
           ["eslint-plugin-n", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:16.6.2"],\
           ["eslint-plugin-promise", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.1.1"],\
+          ["google-auth-library", "npm:9.7.0"],\
           ["hyper-express", "npm:6.14.12"],\
           ["nodemon", "npm:3.1.0"],\
           ["passport", "npm:0.7.0"],\
-          ["passport-google-oauth20", "npm:2.0.0"],\
           ["pg", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:8.11.3"],\
           ["pre-commit", "npm:1.2.2"],\
           ["prettier", "npm:3.2.5"],\

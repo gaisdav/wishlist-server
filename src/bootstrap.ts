@@ -59,7 +59,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
    * 404 handler
    */
   server.all('*', function (req, res) {
-    res.status(404).json(new NotFoundException('Route not found'));
+    res.status(404).json(new NotFoundException(`Route ${req.url} (${req.method.toUpperCase()}) not found`));
   });
 
   return server;

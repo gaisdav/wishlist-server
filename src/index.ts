@@ -7,7 +7,6 @@ dotenv.config();
 
 const app = new HyperExpress.Server();
 
-
 void bootstrap(app).then((server) => {
   server
     .listen(80)

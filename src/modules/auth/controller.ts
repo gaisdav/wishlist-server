@@ -1,36 +1,35 @@
 import { type Server } from 'hyper-express';
 import { AbstractController } from '../../AbstractController';
-import { type IAuthController } from './types';
+import { type IAuthController, type IAuthControllerParams } from './types';
 import { type IRequest, type IResponse } from '../../common/types';
 import axios from 'axios';
 
-const CLIENT_ID = 'CLIENT_ID';
-const CLIENT_SECRET = 'CLIENT_SECRET';
-const REDIRECT_URI = 'http://localhost:80/auth/google/callback';
-
 export class AuthController extends AbstractController implements IAuthController {
+  private readonly CLIENT_ID;
+  private readonly CLIENT_SECRET;
+  private readonly REDIRECT_URI;
+
+  constructor({ GOOGLE_REDIRECT_URI, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET }: IAuthControllerParams) {
+    super();
+    this.CLIENT_ID = GOOGLE_CLIENT_ID;
+    this.CLIENT_SECRET = GOOGLE_CLIENT_SECRET;
+    this.REDIRECT_URI = GOOGLE_REDIRECT_URI;
+  }
+
   init = (server: Server): void => {
-    server.post('/auth/google', this.authGoogle);
     server.get('/auth/google/callback', this.authGoogleCallback);
   };
 
-  authGoogle = async (req: IRequest, res: IResponse): Promise<void> => {
-    const url = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&flowName=GeneralOAuthFlow&scope=profile email`;
-
-    res.redirect(url);
-  };
-
   authGoogleCallback = async (req: IRequest, res: IResponse): Promise<void> => {
-    console.log('req.query', req.query);
     const { code } = req.query;
 
     try {
       // Exchange authorization code for access token
       const { data } = await axios.post('https://oauth2.googleapis.com/token', {
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
+        client_id: this.CLIENT_ID,
+        client_secret: this.CLIENT_SECRET,
         code,
-        redirect_uri: REDIRECT_URI,
+        redirect_uri: this.REDIRECT_URI,
         grant_type: 'authorization_code',
       });
       console.log('data', data);

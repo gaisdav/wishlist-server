@@ -10,8 +10,17 @@ import { Wish } from './modules/wish/entity';
 import { WishRepository } from './modules/wish/repository';
 import { WishService } from './modules/wish/service';
 import { WishController } from './modules/wish/controller';
+import process from 'process';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
+  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+  const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
+
+  if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_REDIRECT_URI) {
+    throw new Error('Missing Google OAuth credentials');
+  }
+
   const dataSource = new DataSource({
     type: 'postgres',
     host: 'localhost',
@@ -46,7 +55,11 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   /**
    * Controllers
    */
-  const controllers = [new AuthController(), new UserController(userService), new WishController(wishService)];
+  const controllers = [
+    new AuthController({ GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI }),
+    new UserController(userService),
+    new WishController(wishService),
+  ];
 
   /**
    * Init server in controllers

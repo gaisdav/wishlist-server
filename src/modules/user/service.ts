@@ -24,8 +24,12 @@ export class UserService implements IUserService {
     return await this.userRepository.findAll();
   }
 
-  async findOne(id: number): Promise<IUserEntity | null> {
-    return await this.userRepository.findOne(id);
+  async findOneById(id: number): Promise<IUserEntity | null> {
+    return await this.userRepository.findOneById(id);
+  }
+
+  async findOneByEmail(email: string): Promise<IUserEntity | null> {
+    return await this.userRepository.findOneByEmail(email);
   }
 
   async update(id: number, updateUserDto: Partial<IUserEntity>): Promise<UpdateResult> {

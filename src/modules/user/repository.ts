@@ -13,8 +13,12 @@ export class UserRepository implements IUserRepository {
     return await this.repository.find();
   }
 
-  async findOne(id: number): Promise<IUserEntity | null> {
+  async findOneById(id: number): Promise<IUserEntity | null> {
     return await this.repository.findOneBy({ id });
+  }
+
+  async findOneByEmail(email: string): Promise<IUserEntity | null> {
+    return await this.repository.findOneBy({ email });
   }
 
   async update(id: number, updateUserDto: Partial<IUserEntity>): Promise<UpdateResult> {

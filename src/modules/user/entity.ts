@@ -24,7 +24,7 @@ export class User extends BaseEntity implements IUserEntity {
   @Column({ default: null })
   bio: string;
 
-  @Column()
+  @Column({ default: null })
   birthdate: string;
 
   @CreateDateColumn()

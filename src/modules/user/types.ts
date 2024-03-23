@@ -8,7 +8,7 @@ export interface IUserEntity {
   lastName: string;
   bio?: string;
   avatarSrc?: string;
-  birthdate: string;
+  birthdate?: string;
   email: string;
   createdAt: Date;
   updatedAt: Date;

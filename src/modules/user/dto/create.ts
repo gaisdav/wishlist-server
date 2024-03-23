@@ -18,7 +18,8 @@ export class CreateUserDTO implements IUserCreateDTO {
   lastName: string;
 
   @IsDateString()
-  birthdate: string;
+  @IsOptional()
+  birthdate?: string;
 
   @IsString()
   @IsOptional()

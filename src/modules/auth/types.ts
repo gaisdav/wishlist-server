@@ -1,4 +1,5 @@
 import { type IRequest, type IResponse } from '../../common/types';
+import { type IUserCreateDTO, type IUserEntity } from '../user/types';
 
 export interface IAuthController {
   authGoogleCallback: (req: IRequest, res: IResponse) => Promise<void>;
@@ -27,4 +28,9 @@ export interface IGoogleUserinfo {
   email: string;
   email_verified: boolean;
   locale: string;
+}
+
+export interface IAuthServices {
+  findUserByEmail: (email: string) => Promise<IUserEntity | null>;
+  createUserByGoogle: (user: IUserCreateDTO) => Promise<IUserEntity>;
 }

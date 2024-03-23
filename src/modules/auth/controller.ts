@@ -25,7 +25,7 @@ export class AuthController extends AbstractController implements IAuthControlle
 
     try {
       const {
-        data: { access_token, token_type },
+        data: { access_token: accessToken, token_type: tokenType },
       } = await axios.post<IGoogleTokenInfo>('https://oauth2.googleapis.com/token', {
         client_id: this.CLIENT_ID,
         client_secret: this.CLIENT_SECRET,
@@ -35,16 +35,10 @@ export class AuthController extends AbstractController implements IAuthControlle
       });
 
       const { data } = await axios.get<IGoogleUserinfo>('https://www.googleapis.com/oauth2/v3/userinfo', {
-        headers: { Authorization: `${token_type} ${access_token}` },
+        headers: { Authorization: `${tokenType} ${accessToken}` },
       });
 
-      // как получить дату рождения?
-      // const a = await axios.get<IGoogleUserinfo>(
-      //   'https://content-people.googleapis.com/v1/people/me?personFields=emailAddresses%2Cgenders%2Cbirthdays%2Cphotos%2Cnicknames&key=AIzaSyBeo4NGA__U6Xxy-aBE6yFm19pgq8TY-TM',
-      //   {
-      //     headers: { Authorization: `${token_type} ${access_token}` },
-      //   },
-      // );
+      console.log(data);
 
       // Code to handle user authentication and retrieval using the profile data
 

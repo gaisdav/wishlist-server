@@ -13,6 +13,7 @@ export interface IAuthControllerParams {
 
 export interface IGoogleTokenInfo {
   access_token: string;
+  refresh_token: string;
   expires_in: number;
   scope: string;
   token_type: string;
@@ -31,6 +32,7 @@ export interface IGoogleUserinfo {
 }
 
 export interface IAuthServices {
+  // TODO AndUpdate?
   findUserByEmail: (email: string) => Promise<IUserEntity | null>;
   createUserByGoogle: (user: IUserCreateDTO) => Promise<IUserEntity>;
 }

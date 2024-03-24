@@ -9,7 +9,43 @@ import {
 } from './types';
 import { type IRequest, type IResponse } from '../../common/types';
 import axios from 'axios';
-import { type IUserCreateDTO } from '../user/types';
+import { type IUserCreateDTO, type IUserEntity } from '../user/types';
+import jwt from 'jsonwebtoken';
+import { type IDecodedToken, type IJwtPayload } from '../../common/types/session';
+
+export const tokenSecret = 'privateKey';
+export const accessTokenExpiresIn = 60;
+export const refreshTokenExpiresIn = '2 year';
+export const accessTokenKey = 'accessToken';
+export const refreshTokenKey = 'refreshToken';
+
+// TODO move it to the service
+export function signJwt(user: IUserEntity, options: Omit<jwt.SignOptions, 'algorithm'> = {}): string {
+  return jwt.sign({ user }, tokenSecret, { expiresIn: accessTokenExpiresIn, ...options, algorithm: 'HS256' });
+}
+
+// TODO move it to the service
+export function verifyJwt(token: string): IDecodedToken {
+  try {
+    const decoded = jwt.verify(token, tokenSecret) as IJwtPayload;
+
+    if (typeof decoded !== 'object') {
+      throw new Error('Invalid token');
+    }
+
+    return {
+      valid: true,
+      expired: false,
+      decoded,
+    };
+  } catch (e: any) {
+    return {
+      valid: false,
+      expired: e.message === 'jwt expired',
+      decoded: null,
+    };
+  }
+}
 
 export class AuthController extends AbstractController implements IAuthController {
   private readonly CLIENT_ID;
@@ -35,7 +71,7 @@ export class AuthController extends AbstractController implements IAuthControlle
 
     try {
       const {
-        data: { access_token: accessToken, token_type: tokenType },
+        data: { access_token: googleAccessToken, token_type: tokenType },
       } = await axios.post<IGoogleTokenInfo>('https://oauth2.googleapis.com/token', {
         client_id: this.CLIENT_ID,
         client_secret: this.CLIENT_SECRET,
@@ -45,14 +81,16 @@ export class AuthController extends AbstractController implements IAuthControlle
       });
 
       const { data } = await axios.get<IGoogleUserinfo>('https://www.googleapis.com/oauth2/v3/userinfo', {
-        headers: { Authorization: `${tokenType} ${accessToken}` },
+        headers: { Authorization: `${tokenType} ${googleAccessToken}` },
       });
 
-      const user = await this.authService.findUserByEmail(data.email);
+      if (!data.email_verified) {
+        // return res.status(403).send('Google account is not verified');
+      }
 
-      if (user) {
-        console.log('existed', user);
-      } else {
+      let user = await this.authService.findUserByEmail(data.email);
+
+      if (!user) {
         const createUserParams: IUserCreateDTO = {
           username: data.email,
           email: data.email,
@@ -61,15 +99,44 @@ export class AuthController extends AbstractController implements IAuthControlle
           avatarSrc: data.picture,
         };
 
-        const user = await this.authService.createUserByGoogle(createUserParams);
-        console.log('created', user);
+        user = await this.authService.createUserByGoogle(createUserParams);
       }
 
-      // TODO - Redirect to the home page. Use environment variable for the URL
+      const accessJWTToken = signJwt(user);
+      const refreshJWTToken = signJwt(user, {
+        expiresIn: refreshTokenExpiresIn,
+      });
+
+      verifyJwt(refreshJWTToken);
+
+      res.cookie(accessTokenKey, accessJWTToken);
+      res.cookie(refreshTokenKey, refreshJWTToken);
       res.redirect('http://localhost:5173/');
     } catch (error) {
-      // TODO - Redirect to the login page. Use environment variable for the URL
       res.redirect('http://localhost:5173/login');
     }
+  };
+
+  // TODO move it to the service
+  // reIssueAccessToken
+  restoreTokens = async ({ token }: { token: string }): Promise<{ accessToken: string; refreshToken: string }> => {
+    const { decoded } = verifyJwt(token);
+
+    if (!decoded?.user) {
+      throw new Error('Invalid refresh token');
+    }
+
+    const user = await this.authService.findUserByEmail(decoded.user.email);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const accessToken = signJwt(user);
+    const refreshToken = signJwt(user, {
+      expiresIn: refreshTokenExpiresIn,
+    });
+
+    return { accessToken, refreshToken };
   };
 }

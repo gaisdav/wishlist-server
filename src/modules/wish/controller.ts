@@ -3,9 +3,10 @@ import { AbstractController } from '../../AbstractController';
 import { type IRequest, type IRequestBody, type IResponse } from '../../common/types';
 import { type IWishService } from './types';
 import { EEndpoint } from '../../common/endpoints';
+import { deserializeUser } from '../../middleware/deserializeUser';
+import { authGuard } from '../../middleware/authGuard';
 
 // TODO: add IWishController interface
-
 export class WishController extends AbstractController {
   constructor(private readonly service: IWishService) {
     super();
@@ -51,7 +52,7 @@ export class WishController extends AbstractController {
   };
 
   init = (server: Server): void => {
-    server.post(EEndpoint.WISHES, this.create);
+    server.post(EEndpoint.WISHES, [deserializeUser, authGuard], this.create);
     server.get(EEndpoint.WISHES, this.getList);
     server.patch(EEndpoint.WISHES_ID, this.update);
     server.delete(EEndpoint.WISHES_ID, this.remove);

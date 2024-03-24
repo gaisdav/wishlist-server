@@ -6,6 +6,9 @@ export interface IRequest extends ExpressRequest {
   body: IRequestBody;
 }
 
+// <{
+//     user: IUserEntity;
+//   }>
 export interface IResponse extends ExpressResponse {}
 
 export interface IBaseEntity {

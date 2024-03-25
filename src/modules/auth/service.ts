@@ -1,4 +1,4 @@
-import { type IAuthRepository, type IAuthServices, type IGoogleTokenInfo, type IGoogleUserinfo } from './types';
+import { type IAuthRepository, type IAuthServices, type IGoogleTokenInfo } from './types';
 import { type IUserCreateDTO, type IUserEntity, type IUserService } from '../user/types';
 import { refreshTokenExpiresIn, signJwt, verifyJwt } from './controller';
 import { type ParsedQs } from 'hyper-express';

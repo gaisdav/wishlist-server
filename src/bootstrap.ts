@@ -12,6 +12,7 @@ import { WishService } from './modules/wish/service';
 import { WishController } from './modules/wish/controller';
 import process from 'process';
 import { AuthService } from './modules/auth/service';
+import { AuthRepository } from './modules/auth/repository';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -44,6 +45,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   /**
    * Repositories
    */
+  const authRepository = new AuthRepository(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI);
   const userRepository = new UserRepository(dataSource.getRepository(User));
   const wishRepository = new WishRepository(dataSource.getRepository(Wish));
 
@@ -51,14 +53,14 @@ export const bootstrap = async (server: Server): Promise<Server> => {
    * Services
    */
   const userService = new UserService(userRepository);
-  const authService = new AuthService(userService);
+  const authService = new AuthService(userService, authRepository);
   const wishService = new WishService(wishRepository);
 
   /**
    * Controllers
    */
   const controllers = [
-    new AuthController({ GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI }, authService),
+    new AuthController(authService),
     new UserController(userService),
     new WishController(wishService),
   ];

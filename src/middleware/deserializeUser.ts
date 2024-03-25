@@ -19,7 +19,6 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
     next();
   }
 
-  // // TODO add 403 Error
   // if (expired && refreshToken) {
   //   const newAccessToken = await reIssueAccessToken({ refreshToken });
   //

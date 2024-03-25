@@ -1,4 +1,4 @@
-import { get } from 'lodash-es';
+import { get } from 'lodash';
 import { accessTokenKey, verifyJwt } from '../modules/auth/controller';
 import { type IRequest, type IResponse } from '../common/types';
 import { type MiddlewareNext } from 'hyper-express';

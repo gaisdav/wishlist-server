@@ -2,10 +2,18 @@ import 'reflect-metadata';
 import * as HyperExpress from 'hyper-express';
 import dotenv from 'dotenv';
 import { bootstrap } from './bootstrap';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = new HyperExpress.Server();
+
+app.use(
+  cors({
+    origin: ['http://localhost', 'http://localhost:5173'],
+    credentials: true,
+  }),
+);
 
 void bootstrap(app).then((server) => {
   server

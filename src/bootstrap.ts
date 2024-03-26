@@ -10,8 +10,19 @@ import { Wish } from './modules/wish/entity';
 import { WishRepository } from './modules/wish/repository';
 import { WishService } from './modules/wish/service';
 import { WishController } from './modules/wish/controller';
+import process from 'process';
+import { AuthService } from './modules/auth/service';
+import { AuthRepository } from './modules/auth/repository';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
+  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+  const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
+
+  if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_REDIRECT_URI) {
+    throw new Error('Missing Google OAuth credentials');
+  }
+
   const dataSource = new DataSource({
     type: 'postgres',
     host: 'localhost',
@@ -34,6 +45,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   /**
    * Repositories
    */
+  const authRepository = new AuthRepository(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI);
   const userRepository = new UserRepository(dataSource.getRepository(User));
   const wishRepository = new WishRepository(dataSource.getRepository(Wish));
 
@@ -41,12 +53,17 @@ export const bootstrap = async (server: Server): Promise<Server> => {
    * Services
    */
   const userService = new UserService(userRepository);
+  const authService = new AuthService(userService, authRepository);
   const wishService = new WishService(wishRepository);
 
   /**
    * Controllers
    */
-  const controllers = [new AuthController(), new UserController(userService), new WishController(wishService)];
+  const controllers = [
+    new AuthController(authService),
+    new UserController(userService),
+    new WishController(wishService),
+  ];
 
   /**
    * Init server in controllers
@@ -59,7 +76,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
    * 404 handler
    */
   server.all('*', function (req, res) {
-    res.status(404).json(new NotFoundException('Route not found'));
+    res.status(404).json(new NotFoundException(`Route ${req.url} (${req.method.toUpperCase()}) not found`));
   });
 
   return server;

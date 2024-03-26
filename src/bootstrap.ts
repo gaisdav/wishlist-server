@@ -5,7 +5,6 @@ import { UserController } from './modules/user/controller';
 import { User } from './modules/user/entity';
 import { UserService } from './modules/user/service';
 import { UserRepository } from './modules/user/repository';
-import { NotFoundException } from './exceptions/NotFoundException';
 import { Wish } from './modules/wish/entity';
 import { WishRepository } from './modules/wish/repository';
 import { WishService } from './modules/wish/service';

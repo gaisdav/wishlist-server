@@ -33,7 +33,6 @@ export interface ITokens {
 }
 
 export interface IAuthServices {
-  // TODO AndUpdate?
   findUserByEmail: (email: string) => Promise<IUserEntity | null>;
   createUserByGoogle: (user: IUserCreateDTO) => Promise<IUserEntity>;
 

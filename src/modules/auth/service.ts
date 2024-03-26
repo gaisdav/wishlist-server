@@ -1,7 +1,9 @@
 import { type IAuthRepository, type IAuthServices, type IGoogleTokenInfo } from './types';
 import { type IUserCreateDTO, type IUserEntity, type IUserService } from '../user/types';
-import { refreshTokenExpiresIn, signJwt, verifyJwt } from './controller';
 import { type ParsedQs } from 'hyper-express';
+import { ForbiddenException } from '../../exceptions/ForbiddenException';
+import { signJwt, verifyJwt } from '../../common/utils';
+import { ValidationException } from '../../exceptions/ValidationException';
 
 export class AuthService implements IAuthServices {
   constructor(
@@ -27,7 +29,7 @@ export class AuthService implements IAuthServices {
     const { data: userinfo } = await this.authRepository.getGoogleUserInfo(tokenType, token);
 
     if (!userinfo.email_verified) {
-      // return res.status(403).send('Google account is not verified');
+      throw new ForbiddenException('Google account is not verified');
     }
 
     let user = await this.userService.findOneByEmail(userinfo.email);
@@ -48,6 +50,7 @@ export class AuthService implements IAuthServices {
   };
 
   getTokens = async (user: IUserEntity): Promise<{ accessToken: string; refreshToken: string }> => {
+    const refreshTokenExpiresIn = process.env.REFRESH_TOKEN_EXPIRES_IN;
     const accessToken = signJwt(user);
     const refreshToken = signJwt(user, {
       expiresIn: refreshTokenExpiresIn,
@@ -56,7 +59,7 @@ export class AuthService implements IAuthServices {
     return { accessToken, refreshToken };
   };
 
-  restoreTokens = async ({ token }: { token: string }): Promise<{ accessToken: string; refreshToken: string }> => {
+  restoreTokens = async (token: string): Promise<{ accessToken: string; refreshToken: string }> => {
     const { decoded } = verifyJwt(token);
 
     if (!decoded?.user) {
@@ -66,7 +69,7 @@ export class AuthService implements IAuthServices {
     const user = await this.userService.findOneByEmail(decoded.user.email);
 
     if (!user) {
-      throw new Error('User not found on refresh token');
+      throw new ValidationException('User not found on refresh token');
     }
 
     return await this.getTokens(user);

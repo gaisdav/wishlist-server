@@ -43,7 +43,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-import", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:2.29.1"],\
           ["eslint-plugin-n", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:16.6.2"],\
           ["eslint-plugin-promise", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.1.1"],\
-          ["hyper-express", "npm:6.14.12"],\
+          ["hyper-express", "npm:6.15.0"],\
           ["jsonwebtoken", "npm:9.0.2"],\
           ["lodash", "npm:4.17.21"],\
           ["nodemon", "npm:3.1.0"],\
@@ -2730,10 +2730,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["hyper-express", [\
-      ["npm:6.14.12", {\
-        "packageLocation": "./.yarn/cache/hyper-express-npm-6.14.12-81b4805596-f33770d850.zip/node_modules/hyper-express/",\
+      ["npm:6.15.0", {\
+        "packageLocation": "./.yarn/cache/hyper-express-npm-6.15.0-f904fd91dd-a9001e8872.zip/node_modules/hyper-express/",\
         "packageDependencies": [\
-          ["hyper-express", "npm:6.14.12"],\
+          ["hyper-express", "npm:6.15.0"],\
           ["accepts", "npm:1.3.8"],\
           ["busboy", "npm:1.6.0"],\
           ["cookie", "npm:0.4.2"],\
@@ -2742,7 +2742,7 @@ const RAW_RUNTIME_STATE =
           ["range-parser", "npm:1.2.1"],\
           ["type-is", "npm:1.6.18"],\
           ["typed-emitter", "npm:2.1.0"],\
-          ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1"]\
+          ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=1977b5039938ad863d42fc4958d48c17e5a1fa06"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5149,10 +5149,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["uWebSockets.js", [\
-      ["https://github.com/uNetworking/uWebSockets.js.git#commit=105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1", {\
-        "packageLocation": "./.yarn/unplugged/uWebSockets.js-https-1a74eb6614/node_modules/uWebSockets.js/",\
+      ["https://github.com/uNetworking/uWebSockets.js.git#commit=1977b5039938ad863d42fc4958d48c17e5a1fa06", {\
+        "packageLocation": "./.yarn/unplugged/uWebSockets.js-https-42e680cbce/node_modules/uWebSockets.js/",\
         "packageDependencies": [\
-          ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1"]\
+          ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=1977b5039938ad863d42fc4958d48c17e5a1fa06"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5356,7 +5356,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-import", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:2.29.1"],\
           ["eslint-plugin-n", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:16.6.2"],\
           ["eslint-plugin-promise", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.1.1"],\
-          ["hyper-express", "npm:6.14.12"],\
+          ["hyper-express", "npm:6.15.0"],\
           ["jsonwebtoken", "npm:9.0.2"],\
           ["lodash", "npm:4.17.21"],\
           ["nodemon", "npm:3.1.0"],\

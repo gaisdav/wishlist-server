@@ -1,9 +1,15 @@
 import { get } from 'lodash';
-import { accessTokenKey, verifyJwt } from '../modules/auth/controller';
 import { type IRequest, type IResponse } from '../common/types';
 import { type MiddlewareNext } from 'hyper-express';
+import { verifyJwt } from '../common/utils';
 
 export const deserializeUser = async (req: IRequest, res: IResponse, next: MiddlewareNext): Promise<any> => {
+  const accessTokenKey = process.env.ACCESS_TOKEN_KEY;
+
+  if (!accessTokenKey) {
+    throw new Error('Access token key is not provided');
+  }
+
   const accessToken: string = get(req, `cookies.${accessTokenKey}`, '').replace(/^Bearer\s/, '');
   // const refreshToken = get(req, `cookies.${refreshTokenKey}`, '');
 
@@ -19,6 +25,7 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
     next();
   }
 
+  // TODO: implement refresh token logic
   // if (expired && refreshToken) {
   //   const newAccessToken = await reIssueAccessToken({ refreshToken });
   //

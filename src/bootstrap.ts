@@ -13,6 +13,8 @@ import { WishController } from './modules/wish/controller';
 import process from 'process';
 import { AuthService } from './modules/auth/service';
 import { AuthRepository } from './modules/auth/repository';
+import { errorHandler } from './middleware/errorHandler';
+import { notFoundHandler } from './middleware/notFoundHandler';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -59,25 +61,12 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   /**
    * Controllers
    */
-  const controllers = [
-    new AuthController(authService),
-    new UserController(userService),
-    new WishController(wishService),
-  ];
+  void new AuthController(server, authService);
+  void new UserController(server, userService);
+  void new WishController(server, wishService);
 
-  /**
-   * Init server in controllers
-   */
-  for (const controller of controllers) {
-    controller.init(server);
-  }
-
-  /**
-   * 404 handler
-   */
-  server.all('*', function (req, res) {
-    res.status(404).json(new NotFoundException(`Route ${req.url} (${req.method.toUpperCase()}) not found`));
-  });
+  server.set_error_handler(errorHandler);
+  server.set_not_found_handler(notFoundHandler);
 
   return server;
 };

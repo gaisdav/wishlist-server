@@ -50,7 +50,7 @@ export class AuthService implements IAuthServices {
   };
 
   getTokens = async (user: IUserEntity): Promise<{ accessToken: string; refreshToken: string }> => {
-    const refreshTokenExpiresIn = process.env.REFRESH_TOKEN_EXPIRES_IN;
+    const refreshTokenExpiresIn = process.env.JWT_REFRESH_EXPIRES_IN;
     const accessToken = signJwt(user);
     const refreshToken = signJwt(user, {
       expiresIn: refreshTokenExpiresIn,

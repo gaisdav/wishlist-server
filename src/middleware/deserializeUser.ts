@@ -4,7 +4,7 @@ import { type MiddlewareNext } from 'hyper-express';
 import { verifyJwt } from '../common/utils';
 
 export const deserializeUser = async (req: IRequest, res: IResponse, next: MiddlewareNext): Promise<any> => {
-  const accessTokenKey = process.env.ACCESS_TOKEN_KEY;
+  const accessTokenKey = process.env.JWT_ACCESS_KEY;
 
   if (!accessTokenKey) {
     throw new Error('Access token key is not provided');

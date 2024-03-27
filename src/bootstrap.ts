@@ -16,21 +16,17 @@ import { errorHandler } from './middleware/errorHandler';
 import { notFoundHandler } from './middleware/notFoundHandler';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
-  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-  const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
-
-  if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_REDIRECT_URI) {
-    throw new Error('Missing Google OAuth credentials');
-  }
+  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? '';
+  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET ?? '';
+  const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI ?? '';
 
   const dataSource = new DataSource({
     type: 'postgres',
-    host: 'localhost',
-    port: 3306,
-    username: 'postgres',
-    password: 'postgres',
-    database: 'postgres',
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     entities: [User, Wish],
     logging: true,
     synchronize: true,

@@ -13,8 +13,8 @@ export class AuthController implements IAuthController {
   }
 
   authGoogleCallback = async (req: IRequest, res: IResponse): Promise<void> => {
-    const accessTokenKey = process.env.ACCESS_TOKEN_KEY;
-    const refreshTokenKey = process.env.REFRESH_TOKEN_KEY;
+    const accessTokenKey = process.env.JWT_ACCESS_KEY;
+    const refreshTokenKey = process.env.JWT_REFRESH_KEY;
 
     if (!accessTokenKey || !refreshTokenKey) {
       throw new Error('Access token or refresh token key is not provided');

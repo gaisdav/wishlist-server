@@ -4,10 +4,6 @@ import { type GlobalErrorHandler } from 'hyper-express';
 
 export const errorHandler: GlobalErrorHandler = (_, res, error) => {
   if (error instanceof Exception) {
-    // if (redirectUrl) {
-    //    res.redirect('http://localhost:5173/login');
-    //  }
-
     res.status(error.statusCode).json(error);
   } else if (error instanceof QueryFailedError) {
     const exception = new Exception({

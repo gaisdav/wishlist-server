@@ -4,12 +4,13 @@ import { type MiddlewareNext } from 'hyper-express';
 import { verifyJwt } from '../common/utils';
 import { restoreTokens } from './restoreTokens';
 
-export const deserializeUser = async (req: IRequest, res: IResponse, next: MiddlewareNext): Promise<any> => {
+export const deserializeUser = async (req: IRequest, res: IResponse, next: MiddlewareNext): Promise<void> => {
   const accessTokenKey = process.env.JWT_ACCESS_KEY;
   const refreshTokenKey = process.env.JWT_REFRESH_KEY;
 
   if (!accessTokenKey || !refreshTokenKey) {
-    throw new Error('Access token or refresh token key is not provided');
+    next(new Error('Access token or refresh token key is not provided'));
+    return;
   }
 
   const accessToken: string = get(req, `cookies.${accessTokenKey}`, '');
@@ -24,7 +25,6 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
 
   if (decoded) {
     res.locals.user = decoded.user;
-    next();
     return;
   }
 
@@ -37,7 +37,6 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
     const result = verifyJwt(newAccessToken);
 
     res.locals.user = result.decoded;
-    next();
     return;
   }
 

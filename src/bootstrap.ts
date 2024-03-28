@@ -20,6 +20,13 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI ?? '';
 
   /**
+   * Middlewares
+   */
+  server.use(deserializeUser);
+  server.set_error_handler(errorHandler);
+  server.set_not_found_handler(notFoundHandler);
+
+  /**
    * Initialize database connection
    */
   await dataSource.initialize();
@@ -44,10 +51,6 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   void new AuthController(server, authService);
   void new UserController(server, userService);
   void new WishController(server, wishService);
-
-  server.use(deserializeUser);
-  server.set_error_handler(errorHandler);
-  server.set_not_found_handler(notFoundHandler);
 
   return server;
 };

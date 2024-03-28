@@ -1,4 +1,4 @@
-import { type IAuthRepository, type IAuthServices, type IGoogleTokenInfo } from './types';
+import { type IAuthRepository, type IAuthServices, type IGoogleTokenInfo, type ITokens } from './types';
 import { type IUserCreateDTO, type IUserEntity, type IUserService } from '../user/types';
 import { type ParsedQs } from 'hyper-express';
 import { ForbiddenException } from '../../exceptions/ForbiddenException';
@@ -10,10 +10,6 @@ export class AuthService implements IAuthServices {
     private readonly userService: IUserService,
     private readonly authRepository: IAuthRepository,
   ) {}
-
-  async findUserByEmail(email: string): Promise<IUserEntity | null> {
-    return await this.userService.findOneByEmail(email);
-  }
 
   async createUserByGoogle(user: IUserCreateDTO): Promise<IUserEntity> {
     return await this.userService.create(user);
@@ -59,7 +55,8 @@ export class AuthService implements IAuthServices {
     return { accessToken, refreshToken };
   };
 
-  restoreTokens = async (token: string): Promise<{ accessToken: string; refreshToken: string }> => {
+  restoreTokens = async (token: string): Promise<ITokens> => {
+    console.log('restoreTokens', token);
     const { decoded } = verifyJwt(token);
 
     if (!decoded?.user) {

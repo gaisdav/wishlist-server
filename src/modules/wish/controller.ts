@@ -1,17 +1,16 @@
 import { type Server } from 'hyper-express';
 import { type IRequest, type IRequestBody, type IResponse } from '../../common/types';
-import { type IWishService } from './types';
+import { type IWishController, type IWishService } from './types';
 import { EEndpoint } from '../../common/endpoints';
-import { deserializeUser, authGuard } from '../../middleware';
+import { authGuard } from '../../middleware';
 
-// TODO: add IWishController interface
-export class WishController {
+export class WishController implements IWishController {
   constructor(
     server: Server,
     private readonly service: IWishService,
   ) {
-    server.post(EEndpoint.WISHES, [deserializeUser, authGuard], this.create);
-    server.get(EEndpoint.WISHES, this.getList);
+    server.post(EEndpoint.WISHES, [authGuard], this.create);
+    server.get(EEndpoint.WISHES, [authGuard], this.getList);
     server.patch(EEndpoint.WISHES_ID, this.update);
     server.delete(EEndpoint.WISHES_ID, this.remove);
   }

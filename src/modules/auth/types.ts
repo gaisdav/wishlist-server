@@ -33,13 +33,13 @@ export interface ITokens {
 }
 
 export interface IAuthServices {
-  findUserByEmail: (email: string) => Promise<IUserEntity | null>;
   createUserByGoogle: (user: IUserCreateDTO) => Promise<IUserEntity>;
 
   getGoogleTokens: (code: ParsedQs['code']) => Promise<IGoogleTokenInfo>;
   getGoogleUser: (tokenType: string, token: string) => Promise<IUserEntity>;
 
   getTokens: (user: IUserEntity) => Promise<ITokens>;
+  restoreTokens: (token: string) => Promise<ITokens>;
 }
 
 export interface IAuthRepository {

@@ -1,5 +1,4 @@
 import { type Server } from 'hyper-express';
-import { DataSource } from 'typeorm';
 import { AuthController } from './modules/auth/controller';
 import { UserController } from './modules/user/controller';
 import { User } from './modules/user/entity';
@@ -12,27 +11,13 @@ import { WishController } from './modules/wish/controller';
 import process from 'process';
 import { AuthService } from './modules/auth/service';
 import { AuthRepository } from './modules/auth/repository';
-import { errorHandler } from './middleware/errorHandler';
-import { notFoundHandler } from './middleware/notFoundHandler';
+import { errorHandler, notFoundHandler, deserializeUser } from './middleware';
+import { dataSource } from './dataSource';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? '';
   const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET ?? '';
   const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI ?? '';
-
-  const dataSource = new DataSource({
-    type: 'postgres',
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    entities: [User, Wish],
-    logging: true,
-    synchronize: true,
-    subscribers: [],
-    migrations: [],
-  });
 
   /**
    * Initialize database connection
@@ -60,6 +45,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   void new UserController(server, userService);
   void new WishController(server, wishService);
 
+  server.use(deserializeUser);
   server.set_error_handler(errorHandler);
   server.set_not_found_handler(notFoundHandler);
 

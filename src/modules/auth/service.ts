@@ -57,7 +57,6 @@ export class AuthService implements IAuthServices {
   };
 
   restoreTokens = async (token: string): Promise<ITokens> => {
-    console.log('restoreTokens', token);
     const { decoded } = verifyJwt(token);
 
     if (!decoded?.user) {

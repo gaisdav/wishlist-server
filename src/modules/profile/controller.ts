@@ -13,7 +13,6 @@ export class ProfileController implements IProfileController {
   }
 
   getProfile = async (req: IRequest, res: IResponse): Promise<void> => {
-    console.log('getProfile');
     const profile = res.locals.user;
 
     res.json(profile);

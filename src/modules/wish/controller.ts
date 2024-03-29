@@ -1,26 +1,25 @@
 import { type Server } from 'hyper-express';
-import { AbstractController } from '../../AbstractController';
 import { type IRequest, type IRequestBody, type IResponse } from '../../common/types';
-import { type IWishService } from './types';
+import { type IWishController, type IWishService } from './types';
 import { EEndpoint } from '../../common/endpoints';
-import { deserializeUser } from '../../middleware/deserializeUser';
-import { authGuard } from '../../middleware/authGuard';
+import { authGuard } from '../../middleware';
 
-// TODO: add IWishController interface
-export class WishController extends AbstractController {
-  constructor(private readonly service: IWishService) {
-    super();
+export class WishController implements IWishController {
+  constructor(
+    server: Server,
+    private readonly service: IWishService,
+  ) {
+    server.post(EEndpoint.WISHES, [authGuard], this.create);
+    server.get(EEndpoint.WISHES, [authGuard], this.getList);
+    server.patch(EEndpoint.WISHES_ID, this.update);
+    server.delete(EEndpoint.WISHES_ID, this.remove);
   }
 
   create = async (req: IRequest, res: IResponse): Promise<void> => {
-    try {
-      const body: IRequestBody = await req.json();
+    const body: IRequestBody = await req.json();
 
-      const wish = await this.service.create(body);
-      res.json(wish);
-    } catch (err) {
-      this.errorHandler(res, err);
-    }
+    const wish = await this.service.create(body);
+    res.json(wish);
   };
 
   getList = async (_: IRequest, res: IResponse): Promise<void> => {
@@ -29,32 +28,17 @@ export class WishController extends AbstractController {
   };
 
   update = async (req: IRequest, res: IResponse): Promise<void> => {
-    try {
-      const { id } = req.params;
-      const body: IRequestBody = await req.json();
+    const { id } = req.params;
+    const body: IRequestBody = await req.json();
 
-      const wish = await this.service.update(Number(id), body);
-      res.json(wish);
-    } catch (err) {
-      this.errorHandler(res, err);
-    }
+    const wish = await this.service.update(Number(id), body);
+    res.json(wish);
   };
 
   remove = async (req: IRequest, res: IResponse): Promise<void> => {
-    try {
-      const { id } = req.params;
+    const { id } = req.params;
 
-      await this.service.remove(Number(id));
-      res.json({});
-    } catch (err) {
-      this.errorHandler(res, err);
-    }
-  };
-
-  init = (server: Server): void => {
-    server.post(EEndpoint.WISHES, [deserializeUser, authGuard], this.create);
-    server.get(EEndpoint.WISHES, this.getList);
-    server.patch(EEndpoint.WISHES_ID, this.update);
-    server.delete(EEndpoint.WISHES_ID, this.remove);
+    await this.service.remove(Number(id));
+    res.json({});
   };
 }

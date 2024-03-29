@@ -1,11 +1,9 @@
 import { type Server } from 'hyper-express';
-import { DataSource } from 'typeorm';
 import { AuthController } from './modules/auth/controller';
 import { UserController } from './modules/user/controller';
 import { User } from './modules/user/entity';
 import { UserService } from './modules/user/service';
 import { UserRepository } from './modules/user/repository';
-import { NotFoundException } from './exceptions/NotFoundException';
 import { Wish } from './modules/wish/entity';
 import { WishRepository } from './modules/wish/repository';
 import { WishService } from './modules/wish/service';
@@ -13,29 +11,21 @@ import { WishController } from './modules/wish/controller';
 import process from 'process';
 import { AuthService } from './modules/auth/service';
 import { AuthRepository } from './modules/auth/repository';
+import { errorHandler, notFoundHandler, deserializeUser } from './middleware';
+import { dataSource } from './dataSource';
+import { ProfileController } from './modules/profile/controller';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
-  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-  const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
+  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? '';
+  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET ?? '';
+  const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI ?? '';
 
-  if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_REDIRECT_URI) {
-    throw new Error('Missing Google OAuth credentials');
-  }
-
-  const dataSource = new DataSource({
-    type: 'postgres',
-    host: 'localhost',
-    port: 3306,
-    username: 'postgres',
-    password: 'postgres',
-    database: 'postgres',
-    entities: [User, Wish],
-    logging: true,
-    synchronize: true,
-    subscribers: [],
-    migrations: [],
-  });
+  /**
+   * Middlewares
+   */
+  server.use(deserializeUser);
+  server.set_error_handler(errorHandler);
+  server.set_not_found_handler(notFoundHandler);
 
   /**
    * Initialize database connection
@@ -59,25 +49,10 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   /**
    * Controllers
    */
-  const controllers = [
-    new AuthController(authService),
-    new UserController(userService),
-    new WishController(wishService),
-  ];
-
-  /**
-   * Init server in controllers
-   */
-  for (const controller of controllers) {
-    controller.init(server);
-  }
-
-  /**
-   * 404 handler
-   */
-  server.all('*', function (req, res) {
-    res.status(404).json(new NotFoundException(`Route ${req.url} (${req.method.toUpperCase()}) not found`));
-  });
+  void new AuthController(server, authService);
+  void new UserController(server, userService);
+  void new WishController(server, wishService);
+  void new ProfileController(server);
 
   return server;
 };

@@ -1,5 +1,5 @@
 import type { DeleteResult, UpdateResult } from 'typeorm';
-import { type IArchivedBaseEntity, type IRequestBody } from '../../common/types';
+import { type IArchivedBaseEntity, type IRequest, type IRequestBody, type IResponse } from '../../common/types';
 
 export interface IWishEntity extends IArchivedBaseEntity {
   title: string;
@@ -12,6 +12,13 @@ export interface IWishCreateDTO
 
 export interface IWishUpdateDTO
   extends Omit<Partial<IWishEntity>, 'id' | 'createdAt' | 'updatedAt' | 'archivedAt' | 'deletedAt'> {}
+
+export interface IWishController {
+  create: (req: IRequest, res: IResponse) => Promise<void>;
+  getList: (req: IRequest, res: IResponse) => Promise<void>;
+  update: (req: IRequest, res: IResponse) => Promise<void>;
+  remove: (req: IRequest, res: IResponse) => Promise<void>;
+}
 
 export interface IWishRepository {
   create: (createWishDto: IWishCreateDTO) => Promise<IWishEntity>;

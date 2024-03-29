@@ -13,6 +13,7 @@ import { AuthService } from './modules/auth/service';
 import { AuthRepository } from './modules/auth/repository';
 import { errorHandler, notFoundHandler, deserializeUser } from './middleware';
 import { dataSource } from './dataSource';
+import { ProfileController } from './modules/profile/controller';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? '';
@@ -51,6 +52,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   void new AuthController(server, authService);
   void new UserController(server, userService);
   void new WishController(server, wishService);
+  void new ProfileController(server);
 
   return server;
 };

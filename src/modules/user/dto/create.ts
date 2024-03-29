@@ -29,4 +29,8 @@ export class CreateUserDTO implements IUserCreateDTO {
   @IsOptional()
   @IsUrl()
   avatarSrc?: string;
+
+  @IsString()
+  @IsOptional()
+  googleId?: string;
 }

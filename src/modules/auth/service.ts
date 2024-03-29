@@ -32,6 +32,7 @@ export class AuthService implements IAuthServices {
 
     if (!user) {
       const createUserParams: IUserCreateDTO = {
+        googleId: userinfo.sub,
         username: userinfo.email,
         email: userinfo.email,
         firstName: userinfo.given_name,

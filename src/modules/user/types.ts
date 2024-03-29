@@ -6,6 +6,7 @@ export interface IUserEntity {
   username: string;
   firstName: string;
   lastName: string;
+  googleId?: string;
   bio?: string;
   avatarSrc?: string;
   birthdate?: string;

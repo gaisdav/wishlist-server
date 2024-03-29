@@ -19,6 +19,9 @@ export class User extends BaseEntity implements IUserEntity {
   lastName: string;
 
   @Column({ default: null })
+  googleId: string;
+
+  @Column({ default: null })
   avatarSrc: string;
 
   @Column({ default: null })

@@ -5,7 +5,7 @@ import { type UpdateResult } from 'typeorm';
 export interface IProfileEntity extends IUserEntity {}
 
 export interface IProfileUpdateDTO
-  extends Omit<Partial<IProfileEntity>, 'id' | 'createdAt' | 'updatedAt' | 'archivedAt' | 'deletedAt'> {}
+  extends Omit<Partial<IProfileEntity>, 'id' | 'googleId' | 'createdAt' | 'updatedAt' | 'archivedAt' | 'deletedAt'> {}
 
 export interface IProfileController {
   getProfile: (req: IRequest, res: IResponse) => Promise<void>;

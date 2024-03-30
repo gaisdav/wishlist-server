@@ -3,6 +3,7 @@ import { type IAuthController, type IAuthServices } from './types';
 import { type IRequest, type IResponse } from '../../common/types';
 import { EEndpoint } from '../../common/endpoints';
 import process from 'process';
+import { generateTokens } from '../../middleware';
 
 export class AuthController implements IAuthController {
   constructor(
@@ -26,7 +27,7 @@ export class AuthController implements IAuthController {
 
     const user = await this.authService.getGoogleUser(tokenType, googleAccessToken);
 
-    const { accessToken, refreshToken } = await this.authService.getTokens(user);
+    const { accessToken, refreshToken } = generateTokens(user);
 
     res.cookie(accessTokenKey, accessToken);
     res.cookie(refreshTokenKey, refreshToken);

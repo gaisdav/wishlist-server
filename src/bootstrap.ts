@@ -14,6 +14,8 @@ import { AuthRepository } from './modules/auth/repository';
 import { errorHandler, notFoundHandler, deserializeUser } from './middleware';
 import { dataSource } from './dataSource';
 import { ProfileController } from './modules/profile/controller';
+import { ProfileService } from './modules/profile/service';
+import { ProfileRepository } from './modules/profile/repository';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? '';
@@ -38,6 +40,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   const authRepository = new AuthRepository(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI);
   const userRepository = new UserRepository(dataSource.getRepository(User));
   const wishRepository = new WishRepository(dataSource.getRepository(Wish));
+  const profileRepository = new ProfileRepository(dataSource.getRepository(User));
 
   /**
    * Services
@@ -45,6 +48,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   const userService = new UserService(userRepository);
   const authService = new AuthService(userService, authRepository);
   const wishService = new WishService(wishRepository);
+  const profileService = new ProfileService(profileRepository);
 
   /**
    * Controllers
@@ -52,7 +56,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   void new AuthController(server, authService);
   void new UserController(server, userService);
   void new WishController(server, wishService);
-  void new ProfileController(server);
+  void new ProfileController(server, profileService);
 
   return server;
 };

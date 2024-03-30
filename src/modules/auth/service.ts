@@ -2,8 +2,6 @@ import { type IAuthRepository, type IAuthServices, type IGoogleTokenInfo, type I
 import { type IUserCreateDTO, type IUserEntity, type IUserService } from '../user/types';
 import { type ParsedQs } from 'hyper-express';
 import { ForbiddenException } from '../../exceptions/ForbiddenException';
-import { signJwt, verifyJwt } from '../../common/utils';
-import { ValidationException } from '../../exceptions/ValidationException';
 
 export class AuthService implements IAuthServices {
   constructor(
@@ -44,31 +42,5 @@ export class AuthService implements IAuthServices {
     }
 
     return user;
-  };
-
-  getTokens = async (user: IUserEntity): Promise<{ accessToken: string; refreshToken: string }> => {
-    const refreshTokenExpiresIn = process.env.JWT_REFRESH_EXPIRES_IN;
-    const accessToken = signJwt(user);
-    const refreshToken = signJwt(user, {
-      expiresIn: refreshTokenExpiresIn,
-    });
-
-    return { accessToken, refreshToken };
-  };
-
-  restoreTokens = async (token: string): Promise<ITokens> => {
-    const { decoded } = verifyJwt(token);
-
-    if (!decoded?.user) {
-      throw new Error('Invalid refresh token');
-    }
-
-    const user = await this.userService.findOneByEmail(decoded.user.email);
-
-    if (!user) {
-      throw new ValidationException('User not found on refresh token');
-    }
-
-    return await this.getTokens(user);
   };
 }

@@ -1,5 +1,5 @@
 import { type Repository } from 'typeorm/repository/Repository';
-import { type DeleteResult, type UpdateResult } from 'typeorm';
+import { type DeleteResult, Like, type UpdateResult } from 'typeorm';
 import { type IUserCreateDTO, type IUserEntity, type IUserRepository } from './types';
 
 export class UserRepository implements IUserRepository {
@@ -9,8 +9,20 @@ export class UserRepository implements IUserRepository {
     return await this.repository.save(createUserDto);
   }
 
-  async findAll(): Promise<IUserEntity[]> {
-    return await this.repository.find();
+  async findAll(search: string): Promise<IUserEntity[]> {
+    return await this.repository.find({
+      where: [
+        {
+          username: Like(`%${search}%`),
+        },
+        {
+          firstName: Like(`%${search}%`),
+        },
+        {
+          lastName: Like(`%${search}%`),
+        },
+      ],
+    });
   }
 
   async findOneById(username: string): Promise<IUserEntity | null> {

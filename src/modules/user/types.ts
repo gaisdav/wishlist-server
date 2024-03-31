@@ -1,5 +1,5 @@
 import type { DeleteResult, UpdateResult } from 'typeorm';
-import { type IRequestBody } from '../../common/types';
+import { type IRequest, type IRequestBody } from '../../common/types';
 
 export interface IUserEntity {
   id: number;
@@ -19,7 +19,7 @@ export interface IUserCreateDTO extends Omit<IUserEntity, 'id' | 'createdAt' | '
 
 export interface IUserRepository {
   create: (createUserDto: IUserCreateDTO) => Promise<IUserEntity>;
-  findAll: () => Promise<IUserEntity[]>;
+  findAll: (search: string) => Promise<IUserEntity[]>;
   findOneById: (username: string) => Promise<IUserEntity | null>;
   findOneByEmail: (id: string) => Promise<IUserEntity | null>;
   update: (id: number, updateUserDto: Partial<IUserEntity>) => Promise<UpdateResult>;
@@ -28,7 +28,7 @@ export interface IUserRepository {
 
 export interface IUserService {
   create: (body: IRequestBody) => Promise<IUserEntity>;
-  findAll: () => Promise<IUserEntity[]>;
+  findAll: (query?: IRequest['query']) => Promise<IUserEntity[]>;
   findOneById: (id: string) => Promise<IUserEntity>;
   findOneByEmail: (email: string) => Promise<IUserEntity | null>;
   update: (id: number, updateUserDto: Partial<IUserEntity>) => Promise<UpdateResult>;

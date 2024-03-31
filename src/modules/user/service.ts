@@ -2,8 +2,8 @@ import { type DeleteResult, type UpdateResult } from 'typeorm';
 import { type IUserEntity, type IUserRepository, type IUserService } from './types';
 import { plainToInstance } from 'class-transformer';
 import { CreateUserDTO } from './dto/create';
-import { validate } from 'class-validator';
-import { type IRequestBody } from '../../common/types';
+import { isString, validate } from 'class-validator';
+import { type IRequest, type IRequestBody } from '../../common/types';
 import { ValidationException } from '../../exceptions/ValidationException';
 import { NotFoundException } from '../../exceptions/NotFoundException';
 
@@ -21,8 +21,14 @@ export class UserService implements IUserService {
     return await this.userRepository.create(userDTO);
   }
 
-  async findAll(): Promise<IUserEntity[]> {
-    return await this.userRepository.findAll();
+  async findAll(query?: IRequest['query']): Promise<IUserEntity[]> {
+    const search = query?.search;
+
+    if (!isString(search)) {
+      throw new ValidationException('Search query should be a string');
+    }
+
+    return await this.userRepository.findAll(search);
   }
 
   async findOneById(username: string): Promise<IUserEntity> {

@@ -21,7 +21,8 @@ export class UserController {
   };
 
   getList = async (req: IRequest, res: IResponse): Promise<void> => {
-    const list = await this.service.findAll();
+    const list = await this.service.findAll(req.query);
+
     res.json(list);
   };
 

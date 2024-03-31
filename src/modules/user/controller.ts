@@ -10,6 +10,7 @@ export class UserController {
   ) {
     server.post(EEndpoint.USERS, this.create);
     server.get(EEndpoint.USERS, this.getList);
+    server.get(EEndpoint.USERS_ID, this.getUser);
   }
 
   create = async (req: IRequest, res: IResponse): Promise<void> => {
@@ -22,5 +23,12 @@ export class UserController {
   getList = async (req: IRequest, res: IResponse): Promise<void> => {
     const list = await this.service.findAll();
     res.json(list);
+  };
+
+  getUser = async (req: IRequest, res: IResponse): Promise<void> => {
+    const { username } = req.params;
+    const user = await this.service.findOneById(username);
+
+    res.json(user);
   };
 }

@@ -5,6 +5,7 @@ import { CreateUserDTO } from './dto/create';
 import { validate } from 'class-validator';
 import { type IRequestBody } from '../../common/types';
 import { ValidationException } from '../../exceptions/ValidationException';
+import { NotFoundException } from '../../exceptions/NotFoundException';
 
 export class UserService implements IUserService {
   constructor(private readonly userRepository: IUserRepository) {}
@@ -24,8 +25,14 @@ export class UserService implements IUserService {
     return await this.userRepository.findAll();
   }
 
-  async findOneById(id: number): Promise<IUserEntity | null> {
-    return await this.userRepository.findOneById(id);
+  async findOneById(username: string): Promise<IUserEntity> {
+    const user = await this.userRepository.findOneById(username);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
   }
 
   async findOneByEmail(email: string): Promise<IUserEntity | null> {

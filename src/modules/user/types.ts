@@ -20,7 +20,7 @@ export interface IUserCreateDTO extends Omit<IUserEntity, 'id' | 'createdAt' | '
 export interface IUserRepository {
   create: (createUserDto: IUserCreateDTO) => Promise<IUserEntity>;
   findAll: () => Promise<IUserEntity[]>;
-  findOneById: (id: number) => Promise<IUserEntity | null>;
+  findOneById: (username: string) => Promise<IUserEntity | null>;
   findOneByEmail: (id: string) => Promise<IUserEntity | null>;
   update: (id: number, updateUserDto: Partial<IUserEntity>) => Promise<UpdateResult>;
   remove: (id: number) => Promise<DeleteResult>;
@@ -29,7 +29,7 @@ export interface IUserRepository {
 export interface IUserService {
   create: (body: IRequestBody) => Promise<IUserEntity>;
   findAll: () => Promise<IUserEntity[]>;
-  findOneById: (id: number) => Promise<IUserEntity | null>;
+  findOneById: (id: string) => Promise<IUserEntity>;
   findOneByEmail: (email: string) => Promise<IUserEntity | null>;
   update: (id: number, updateUserDto: Partial<IUserEntity>) => Promise<UpdateResult>;
   remove: (id: number) => Promise<DeleteResult>;

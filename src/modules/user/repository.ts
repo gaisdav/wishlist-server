@@ -13,8 +13,8 @@ export class UserRepository implements IUserRepository {
     return await this.repository.find();
   }
 
-  async findOneById(id: number): Promise<IUserEntity | null> {
-    return await this.repository.findOneBy({ id });
+  async findOneById(username: string): Promise<IUserEntity | null> {
+    return await this.repository.findOneBy({ username });
   }
 
   async findOneByEmail(email: string): Promise<IUserEntity | null> {

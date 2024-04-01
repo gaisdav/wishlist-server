@@ -1,26 +1,46 @@
 import { type IWishEntity, type IWishRepository, type IWishService } from './types';
 import { plainToInstance } from 'class-transformer';
 import { CreateWishDTO } from './dto/create';
-import { type IRequestBody } from '../../common/types';
+import { type IRequest, type TRequestBody } from '../../common/types';
 import { AbstractService } from '../../AbstractService';
 import { UpdateWishDTO } from './dto/update';
 import { NotFoundException } from '../../exceptions/NotFoundException';
+import { type IUserService } from '../user/types';
+import { ValidationException } from '../../exceptions/ValidationException';
+import { isString } from 'class-validator';
 
 export class WishService extends AbstractService implements IWishService {
-  constructor(private readonly wishRepository: IWishRepository) {
+  constructor(
+    private readonly wishRepository: IWishRepository,
+    private readonly userService: IUserService,
+  ) {
     super();
   }
 
-  async create(body: IRequestBody): Promise<IWishEntity> {
+  async create(body: TRequestBody, authorId: number): Promise<IWishEntity> {
     const wishDTO = plainToInstance(CreateWishDTO, body);
+    const authorEntity = await this.userService.findOneById(authorId);
 
     await this.validate(wishDTO);
 
-    return await this.wishRepository.create(wishDTO);
+    return await this.wishRepository.create(wishDTO, authorEntity);
   }
 
   async findAll(): Promise<IWishEntity[]> {
     return await this.wishRepository.findAll();
+  }
+
+  async findByUsername(query?: IRequest['query']): Promise<IWishEntity[]> {
+    const username = query?.username;
+
+    if (!isString(username)) {
+      throw new ValidationException('Username query should be a string');
+    }
+    return await this.wishRepository.findByUsername(username);
+  }
+
+  async findByUserId(id: number): Promise<IWishEntity[]> {
+    return await this.wishRepository.findByUserId(id);
   }
 
   async findOne(id: number): Promise<IWishEntity> {
@@ -31,7 +51,7 @@ export class WishService extends AbstractService implements IWishService {
     return wish;
   }
 
-  async update(id: number, body: IRequestBody): Promise<IWishEntity> {
+  async update(id: number, body: TRequestBody): Promise<IWishEntity> {
     const wishDTO = plainToInstance(UpdateWishDTO, body);
     await this.validate(wishDTO);
 

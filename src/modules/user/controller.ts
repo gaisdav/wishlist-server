@@ -1,5 +1,5 @@
 import { type Server } from 'hyper-express';
-import { type IRequest, type IRequestBody, type IResponse } from '../../common/types';
+import { type IRequest, type TRequestBody, type IResponse } from '../../common/types';
 import { type IUserService } from './types';
 import { EEndpoint } from '../../common/endpoints';
 
@@ -14,7 +14,7 @@ export class UserController {
   }
 
   create = async (req: IRequest, res: IResponse): Promise<void> => {
-    const body: IRequestBody = await req.json();
+    const body: TRequestBody = await req.json();
 
     const user = await this.service.create(body);
     res.json(user);
@@ -28,7 +28,7 @@ export class UserController {
 
   getUser = async (req: IRequest, res: IResponse): Promise<void> => {
     const { username } = req.params;
-    const user = await this.service.findOneById(username);
+    const user = await this.service.findOneByUsername(username);
 
     res.json(user);
   };

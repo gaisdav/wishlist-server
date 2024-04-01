@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
-import type { IUserEntity } from '../modules/user/types';
 import type { IDecodedToken, IJwtPayload } from './types/session';
 
-export function signJwt(user: IUserEntity, options: Omit<jwt.SignOptions, 'algorithm'> = {}): string {
+export function signJwt(userId: number, options: Omit<jwt.SignOptions, 'algorithm'> = {}): string {
   const tokenSecret = process.env.JWT_SECRET;
   const accessTokenExpiresIn = process.env.JWT_ACCESS_EXPIRES_IN;
 
@@ -10,7 +9,7 @@ export function signJwt(user: IUserEntity, options: Omit<jwt.SignOptions, 'algor
     throw new Error('Missing JWT_SECRET or JWT_ACCESS_EXPIRES_IN');
   }
 
-  return jwt.sign({ user }, tokenSecret, { expiresIn: accessTokenExpiresIn, ...options, algorithm: 'HS256' });
+  return jwt.sign({ userId }, tokenSecret, { expiresIn: accessTokenExpiresIn, ...options, algorithm: 'HS256' });
 }
 
 export function verifyJwt(token: string): IDecodedToken {

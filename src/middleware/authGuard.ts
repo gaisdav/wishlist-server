@@ -3,9 +3,9 @@ import { type MiddlewareNext } from 'hyper-express';
 import { ForbiddenException } from '../exceptions/ForbiddenException';
 
 export const authGuard = async (_: IRequest, res: IResponse, next: MiddlewareNext): Promise<void> => {
-  const user = res.locals.user;
+  const userId = res.locals.userId;
 
-  if (!user) {
+  if (!userId) {
     next(new ForbiddenException('Unauthorized'));
     return;
   }

@@ -1,11 +1,10 @@
-import type { IUserEntity } from '../modules/user/types';
 import type { ITokens } from '../modules/auth/types';
 import { signJwt } from '../common/utils';
 
-export const generateTokens = (user: IUserEntity): ITokens => {
+export const generateTokens = (userId: number): ITokens => {
   const refreshTokenExpiresIn = process.env.JWT_REFRESH_EXPIRES_IN;
-  const accessToken = signJwt(user);
-  const refreshToken = signJwt(user, {
+  const accessToken = signJwt(userId);
+  const refreshToken = signJwt(userId, {
     expiresIn: refreshTokenExpiresIn,
   });
 

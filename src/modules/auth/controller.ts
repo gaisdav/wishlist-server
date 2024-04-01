@@ -27,7 +27,7 @@ export class AuthController implements IAuthController {
 
     const user = await this.authService.getGoogleUser(tokenType, googleAccessToken);
 
-    const { accessToken, refreshToken } = generateTokens(user);
+    const { accessToken, refreshToken } = generateTokens(user.id);
 
     res.cookie(accessTokenKey, accessToken);
     res.cookie(refreshTokenKey, refreshToken);

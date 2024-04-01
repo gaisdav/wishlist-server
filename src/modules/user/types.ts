@@ -1,5 +1,5 @@
 import type { DeleteResult, UpdateResult } from 'typeorm';
-import { type IRequest, type IRequestBody } from '../../common/types';
+import { type IRequest, type TRequestBody } from '../../common/types';
 
 export interface IUserEntity {
   id: number;
@@ -20,17 +20,19 @@ export interface IUserCreateDTO extends Omit<IUserEntity, 'id' | 'createdAt' | '
 export interface IUserRepository {
   create: (createUserDto: IUserCreateDTO) => Promise<IUserEntity>;
   findAll: (search: string) => Promise<IUserEntity[]>;
-  findOneById: (username: string) => Promise<IUserEntity | null>;
-  findOneByEmail: (id: string) => Promise<IUserEntity | null>;
+  findOneByUsername: (username: string) => Promise<IUserEntity | null>;
+  findOneByEmail: (email: string) => Promise<IUserEntity | null>;
+  findOneById: (id: number) => Promise<IUserEntity | null>;
   update: (id: number, updateUserDto: Partial<IUserEntity>) => Promise<UpdateResult>;
   remove: (id: number) => Promise<DeleteResult>;
 }
 
 export interface IUserService {
-  create: (body: IRequestBody) => Promise<IUserEntity>;
+  create: (body: TRequestBody) => Promise<IUserEntity>;
   findAll: (query?: IRequest['query']) => Promise<IUserEntity[]>;
-  findOneById: (id: string) => Promise<IUserEntity>;
-  findOneByEmail: (email: string) => Promise<IUserEntity | null>;
+  findOneByUsername: (username: string) => Promise<IUserEntity>;
+  findOneByEmail: (email: string) => Promise<IUserEntity>;
+  findOneById: (id: number) => Promise<IUserEntity>;
   update: (id: number, updateUserDto: Partial<IUserEntity>) => Promise<UpdateResult>;
   remove: (id: number) => Promise<DeleteResult>;
 }

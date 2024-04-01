@@ -1,10 +1,8 @@
 import type { Request as ExpressRequest, Response as ExpressResponse } from 'hyper-express';
 
-export interface IRequestBody extends Record<number, string> {}
+export type TRequestBody = ExpressRequest['body'];
 
-export interface IRequest extends ExpressRequest {
-  body: IRequestBody;
-}
+export interface IRequest extends ExpressRequest {}
 
 export interface IResponse extends ExpressResponse {}
 

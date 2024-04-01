@@ -25,12 +25,16 @@ export class UserRepository implements IUserRepository {
     });
   }
 
-  async findOneById(username: string): Promise<IUserEntity | null> {
+  async findOneByUsername(username: string): Promise<IUserEntity | null> {
     return await this.repository.findOneBy({ username });
   }
 
   async findOneByEmail(email: string): Promise<IUserEntity | null> {
     return await this.repository.findOneBy({ email });
+  }
+
+  async findOneById(id: number): Promise<IUserEntity | null> {
+    return await this.repository.findOneBy({ id });
   }
 
   async update(id: number, updateUserDto: Partial<IUserEntity>): Promise<UpdateResult> {

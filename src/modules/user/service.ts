@@ -3,14 +3,14 @@ import { type IUserEntity, type IUserRepository, type IUserService } from './typ
 import { plainToInstance } from 'class-transformer';
 import { CreateUserDTO } from './dto/create';
 import { isString, validate } from 'class-validator';
-import { type IRequest, type IRequestBody } from '../../common/types';
+import { type IRequest, type TRequestBody } from '../../common/types';
 import { ValidationException } from '../../exceptions/ValidationException';
 import { NotFoundException } from '../../exceptions/NotFoundException';
 
 export class UserService implements IUserService {
   constructor(private readonly userRepository: IUserRepository) {}
 
-  async create(body: IRequestBody): Promise<IUserEntity> {
+  async create(body: TRequestBody): Promise<IUserEntity> {
     const userDTO = plainToInstance(CreateUserDTO, body);
     const errors = await validate(userDTO);
 
@@ -31,8 +31,8 @@ export class UserService implements IUserService {
     return await this.userRepository.findAll(search);
   }
 
-  async findOneById(username: string): Promise<IUserEntity> {
-    const user = await this.userRepository.findOneById(username);
+  async findOneByUsername(username: string): Promise<IUserEntity> {
+    const user = await this.userRepository.findOneByUsername(username);
 
     if (!user) {
       throw new NotFoundException('User not found');
@@ -41,8 +41,24 @@ export class UserService implements IUserService {
     return user;
   }
 
-  async findOneByEmail(email: string): Promise<IUserEntity | null> {
-    return await this.userRepository.findOneByEmail(email);
+  async findOneByEmail(email: string): Promise<IUserEntity> {
+    const user = await this.userRepository.findOneByEmail(email);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
+  }
+
+  async findOneById(id: number): Promise<IUserEntity> {
+    const user = await this.userRepository.findOneById(id);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
   }
 
   async update(id: number, updateUserDto: Partial<IUserEntity>): Promise<UpdateResult> {

@@ -1,5 +1,5 @@
 import type { IUserEntity } from '../user/types';
-import { type IRequest, type IResponse } from '../../common/types';
+import { type IRequest, type IResponse, type TRequestBody } from '../../common/types';
 import { type UpdateResult } from 'typeorm';
 
 export interface IProfileEntity extends IUserEntity {}
@@ -19,5 +19,5 @@ export interface IProfileRepository {
 
 export interface IProfileService {
   getProfile: (id: number) => Promise<IProfileEntity>;
-  updateProfile: (id: number, data: IProfileUpdateDTO) => Promise<IProfileEntity>;
+  updateProfile: (id: number, data: TRequestBody) => Promise<IProfileEntity>;
 }

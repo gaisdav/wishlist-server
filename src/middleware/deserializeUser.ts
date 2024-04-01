@@ -24,7 +24,7 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
   const { decoded, expired } = verifyJwt(accessToken);
 
   if (decoded) {
-    res.locals.user = decoded.user;
+    res.locals.userId = decoded.userId;
     return;
   }
 

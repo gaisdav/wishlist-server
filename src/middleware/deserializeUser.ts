@@ -17,7 +17,6 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
   const refreshToken = get(req, `cookies.${refreshTokenKey}`, '');
 
   if (!accessToken) {
-    next();
     return;
   }
 
@@ -37,8 +36,5 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
     const result = verifyJwt(newAccessToken);
 
     res.locals.user = result.decoded;
-    return;
   }
-
-  next();
 };

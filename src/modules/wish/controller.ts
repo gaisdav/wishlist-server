@@ -16,12 +16,10 @@ export class WishController implements IWishController {
     server.delete(EEndpoint.WISHES_ID, this.remove);
   }
 
-  // TODO is creating twice ???
   create = async (req: IRequest, res: IResponse): Promise<void> => {
     const body: TRequestBody = await req.json();
     const authorId: number = res.locals.userId;
 
-    console.log('WishController');
     const wish = await this.service.create(body, authorId);
     res.json(wish);
   };

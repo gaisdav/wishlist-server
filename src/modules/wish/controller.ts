@@ -40,7 +40,7 @@ export class WishController implements IWishController {
 
   update = async (req: IRequest, res: IResponse): Promise<void> => {
     const { id } = req.params;
-    const body: TRequestBody = await req.json();
+    const body = await req.json();
 
     const wish = await this.service.update(Number(id), body);
     res.json(wish);

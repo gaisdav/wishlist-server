@@ -44,6 +44,6 @@ export interface IWishService {
   findByUsername: (query?: IRequest['query']) => Promise<IWishEntity[]>;
   findByUserId: (id: number) => Promise<IWishEntity[]>;
   findOne: (id: number, options?: IWishServiceFindOneOptions) => Promise<IWishEntity>;
-  update: (id: number, updateWishDto: Partial<TRequestBody>) => Promise<IWishEntity>;
+  update: (id: number, updateWishDto: TRequestBody) => Promise<IWishEntity>;
   remove: (id: number) => Promise<void>;
 }

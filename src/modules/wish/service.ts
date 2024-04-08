@@ -46,7 +46,9 @@ export class WishService extends AbstractService implements IWishService {
   async findOne(id: number): Promise<IWishEntity> {
     const wish = await this.wishRepository.findOne(id);
 
-    if (!wish) throw new NotFoundException('Wish not found');
+    if (!wish) {
+      throw new NotFoundException('Wish not found');
+    }
 
     return wish;
   }

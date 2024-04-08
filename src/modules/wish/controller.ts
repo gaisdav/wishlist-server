@@ -9,9 +9,10 @@ export class WishController implements IWishController {
     server: Server,
     private readonly service: IWishService,
   ) {
-    server.post(EEndpoint.WISHES, [authGuard], this.create);
     server.get(EEndpoint.WISHES, [authGuard], this.getList);
     server.get(EEndpoint.WISHES_PROFILE, [authGuard], this.getProfileList);
+    server.get(EEndpoint.WISHES_ID, this.getWish);
+    server.post(EEndpoint.WISHES, [authGuard], this.create);
     server.patch(EEndpoint.WISHES_ID, this.update);
     server.delete(EEndpoint.WISHES_ID, this.remove);
   }
@@ -29,6 +30,13 @@ export class WishController implements IWishController {
 
     const list = await this.service.findByUsername(query);
     res.json(list);
+  };
+
+  getWish = async (req: IRequest, res: IResponse): Promise<void> => {
+    const { id } = req.params;
+
+    const wish = await this.service.findOne(Number(id));
+    res.json(wish);
   };
 
   getProfileList = async (_: IRequest, res: IResponse): Promise<void> => {

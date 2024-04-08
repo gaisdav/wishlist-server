@@ -18,6 +18,7 @@ export interface IWishUpdateDTO
 export interface IWishController {
   create: (req: IRequest, res: IResponse) => Promise<void>;
   getList: (req: IRequest, res: IResponse) => Promise<void>;
+  getWish: (req: IRequest, res: IResponse) => Promise<void>;
   getProfileList: (req: IRequest, res: IResponse) => Promise<void>;
   update: (req: IRequest, res: IResponse) => Promise<void>;
   remove: (req: IRequest, res: IResponse) => Promise<void>;

@@ -1,0 +1,4 @@
+databases:
+  - name: postgres_db
+    databaseName: postgres_db # Optional (Render may add a suffix)
+    user: postgres_user # Optional

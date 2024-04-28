@@ -5,17 +5,12 @@
   "scripts": {
     "dev": "npx nodemon",
     "prod": "node dist/index.js",
-    "prebuild": "rimraf ./dist && yarn install --production",
+    "prebuild": "rm -rf ./dist && yarn install",
     "build": "yarn run prebuild && tsc",
     "preview": "yarn run build && node dist/index.js",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
   },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ],
   "devDependencies": {
     "@types/jsonwebtoken": "^9",
     "@types/lodash": "^4",

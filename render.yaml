@@ -1,4 +1,7 @@
-# Exported from Render on 2024-04-28T22:20:45Z
+databases:
+  - name: postgres_db
+    databaseName: postgres_db
+    user: postgres_user
 services:
 - type: web
   name: wishlist-server

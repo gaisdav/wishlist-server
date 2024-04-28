@@ -1,0 +1,40 @@
+# Exported from Render on 2024-04-28T22:20:45Z
+services:
+- type: web
+  name: wishlist-server
+  runtime: node
+  repo: https://github.com/gaisdav/wishlist-server
+  plan: free
+  envVars:
+  - key: YARN_CACHE_FOLDER
+    sync: false
+  - key: JWT_SECRET
+    sync: false
+  - key: JWT_REFRESH_KEY
+    sync: false
+  - key: JWT_REFRESH_EXPIRES_IN
+    sync: false
+  - key: JWT_ACCESS_KEY
+    sync: false
+  - key: JWT_ACCESS_EXPIRES_IN
+    sync: false
+  - key: GOOGLE_REDIRECT_URI
+    sync: false
+  - key: GOOGLE_CLIENT_SECRET
+    sync: false
+  - key: GOOGLE_CLIENT_ID
+    sync: false
+  - key: DB_USER
+    sync: false
+  - key: DB_PORT
+    sync: false
+  - key: DB_PASSWORD
+    sync: false
+  - key: DB_NAME
+    sync: false
+  - key: DB_HOST
+    sync: false
+  region: frankfurt
+  buildCommand: yarn run build
+  startCommand: yarn run prod
+version: "1"

@@ -7,7 +7,7 @@ import { getUserById } from './getCurrentUser';
 export const restoreTokens = async (token: string): Promise<ITokens> => {
   const { decoded } = verifyJwt(token);
 
-  if (!decoded?.user) {
+  if (!decoded?.userId) {
     throw new Error('Invalid refresh token');
   }
 

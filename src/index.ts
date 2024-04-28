@@ -1,5 +1,6 @@
-import dotenv from 'dotenv';
+import 'reflect-metadata';
 import * as HyperExpress from 'hyper-express';
+import dotenv from 'dotenv';
 import { bootstrap } from './bootstrap';
 import cors from 'cors';
 

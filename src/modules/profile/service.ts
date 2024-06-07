@@ -4,6 +4,7 @@ import { type TRequestBody } from '../../common/types';
 import { UpdateProfileDTO } from './dto/update';
 import { plainToInstance } from 'class-transformer';
 import { NotFoundException } from '../../exceptions/NotFoundException';
+import { UnauthorizedException } from '../../exceptions/UnauthorizedException';
 
 export class ProfileService extends AbstractService implements IProfileService {
   constructor(private readonly profileRepository: IProfileRepository) {
@@ -14,7 +15,7 @@ export class ProfileService extends AbstractService implements IProfileService {
     const profile = await this.profileRepository.getProfile(id);
 
     if (!profile) {
-      throw new NotFoundException(`Profile with id ${id} not found`);
+      throw new UnauthorizedException(`Profile with id ${id} not found`);
     }
 
     return profile;

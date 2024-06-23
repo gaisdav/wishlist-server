@@ -1,10 +1,11 @@
 import type { ITokens } from '../modules/auth/types';
 import { verifyJwt } from '../common/utils';
-import { ValidationException } from '../exceptions/ValidationException';
 import { generateTokens } from './generateTokens';
 import { getUserById } from './getCurrentUser';
+import { UnauthorizedException } from '../exceptions/UnauthorizedException';
 
 export const restoreTokens = async (token: string): Promise<ITokens> => {
+  console.log('restoreTokens');
   const { decoded } = verifyJwt(token);
 
   if (!decoded?.userId) {
@@ -12,9 +13,9 @@ export const restoreTokens = async (token: string): Promise<ITokens> => {
   }
 
   const user = await getUserById(decoded.userId);
-
+  console.log(user);
   if (!user) {
-    throw new ValidationException('User not found on refresh token');
+    throw new UnauthorizedException('User not found');
   }
 
   return generateTokens(user.id);

@@ -1,5 +1,5 @@
 #Build stage
-FROM node:20-alpine AS build
+FROM node:22-alpine
 
 WORKDIR /app
 
@@ -9,6 +9,4 @@ RUN corepack enable && yarn install
 
 COPY . ./
 
-RUN yarn run build
-
-CMD ["yarn", "run", "prod"]
+CMD ["yarn", "run", "dev"]

@@ -1,4 +1,3 @@
-import { get } from 'lodash';
 import { type IRequest, type IResponse } from '../common/types';
 import { type MiddlewareNext } from 'hyper-express';
 import { verifyJwt } from '../common/utils';
@@ -13,8 +12,9 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
       return;
     }
 
-    const accessToken: string = get(req, `cookies.${accessTokenKey}`, '');
-    const refreshToken = get(req, `cookies.${refreshTokenKey}`, '');
+    const accessToken = req.cookies[accessTokenKey];
+    // TODO add different endpoint for refresh token
+    const refreshToken = req.cookies[refreshTokenKey];
 
     if (!accessToken) {
       return;

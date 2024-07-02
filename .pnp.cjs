@@ -30,7 +30,6 @@ const RAW_RUNTIME_STATE =
           ["@eslint/js", "npm:9.5.0"],\
           ["@types/cors", "npm:2.8.17"],\
           ["@types/jsonwebtoken", "npm:9.0.6"],\
-          ["@types/lodash", "npm:4.17.5"],\
           ["@types/node", "npm:20.14.8"],\
           ["@types/passport", "npm:1.0.16"],\
           ["@typescript-eslint/eslint-plugin", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.21.0"],\
@@ -46,9 +45,8 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-n", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:16.6.2"],\
           ["eslint-plugin-promise", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.1.1"],\
           ["globals", "npm:15.6.0"],\
-          ["hyper-express", "npm:6.16.3"],\
+          ["hyper-express", "npm:6.16.4"],\
           ["jsonwebtoken", "npm:9.0.2"],\
-          ["lodash", "npm:4.17.21"],\
           ["nodemon", "npm:3.1.4"],\
           ["passport", "npm:0.7.0"],\
           ["pg", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:8.12.0"],\
@@ -441,15 +439,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/jsonwebtoken", "npm:9.0.6"],\
           ["@types/node", "npm:20.11.24"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/lodash", [\
-      ["npm:4.17.5", {\
-        "packageLocation": "./.yarn/cache/@types-lodash-npm-4.17.5-81b8d6a8ab-10e2e9cbeb.zip/node_modules/@types/lodash/",\
-        "packageDependencies": [\
-          ["@types/lodash", "npm:4.17.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2917,10 +2906,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["hyper-express", [\
-      ["npm:6.16.3", {\
-        "packageLocation": "./.yarn/cache/hyper-express-npm-6.16.3-6d3610121e-ef27ccd636.zip/node_modules/hyper-express/",\
+      ["npm:6.16.4", {\
+        "packageLocation": "./.yarn/cache/hyper-express-npm-6.16.4-93cb9b32e6-168f4cd2b2.zip/node_modules/hyper-express/",\
         "packageDependencies": [\
-          ["hyper-express", "npm:6.16.3"],\
+          ["hyper-express", "npm:6.16.4"],\
           ["accepts", "npm:1.3.8"],\
           ["busboy", "npm:1.6.0"],\
           ["cookie", "npm:0.4.2"],\
@@ -2929,7 +2918,7 @@ const RAW_RUNTIME_STATE =
           ["range-parser", "npm:1.2.1"],\
           ["type-is", "npm:1.6.18"],\
           ["typed-emitter", "npm:2.1.0"],\
-          ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=1977b5039938ad863d42fc4958d48c17e5a1fa06"]\
+          ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=8fa05571bf6ea95be8966ad313d9d39453e381ae"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3425,15 +3414,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["locate-path", "npm:6.0.0"],\
           ["p-locate", "npm:5.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["lodash", [\
-      ["npm:4.17.21", {\
-        "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-c08619c038.zip/node_modules/lodash/",\
-        "packageDependencies": [\
-          ["lodash", "npm:4.17.21"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5378,10 +5358,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["uWebSockets.js", [\
-      ["https://github.com/uNetworking/uWebSockets.js.git#commit=1977b5039938ad863d42fc4958d48c17e5a1fa06", {\
-        "packageLocation": "./.yarn/unplugged/uWebSockets.js-https-42e680cbce/node_modules/uWebSockets.js/",\
+      ["https://github.com/uNetworking/uWebSockets.js.git#commit=8fa05571bf6ea95be8966ad313d9d39453e381ae", {\
+        "packageLocation": "./.yarn/unplugged/uWebSockets.js-https-75116983e7/node_modules/uWebSockets.js/",\
         "packageDependencies": [\
-          ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=1977b5039938ad863d42fc4958d48c17e5a1fa06"]\
+          ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=8fa05571bf6ea95be8966ad313d9d39453e381ae"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5571,7 +5551,6 @@ const RAW_RUNTIME_STATE =
           ["@eslint/js", "npm:9.5.0"],\
           ["@types/cors", "npm:2.8.17"],\
           ["@types/jsonwebtoken", "npm:9.0.6"],\
-          ["@types/lodash", "npm:4.17.5"],\
           ["@types/node", "npm:20.14.8"],\
           ["@types/passport", "npm:1.0.16"],\
           ["@typescript-eslint/eslint-plugin", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.21.0"],\
@@ -5587,9 +5566,8 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-n", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:16.6.2"],\
           ["eslint-plugin-promise", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:6.1.1"],\
           ["globals", "npm:15.6.0"],\
-          ["hyper-express", "npm:6.16.3"],\
+          ["hyper-express", "npm:6.16.4"],\
           ["jsonwebtoken", "npm:9.0.2"],\
-          ["lodash", "npm:4.17.21"],\
           ["nodemon", "npm:3.1.4"],\
           ["passport", "npm:0.7.0"],\
           ["pg", "virtual:cc59cb9874c333951113dc7188dd37168db1a0272ad33dac7af617c8577e27a4420e3fc4f864f43009d31c42a0af823fcbf6f6a52b543ee0c6e9ca5a86a764fd#npm:8.12.0"],\

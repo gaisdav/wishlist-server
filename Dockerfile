@@ -9,6 +9,8 @@ RUN corepack enable && yarn install
 
 COPY . ./
 
-CMD ["yarn", "run", "dev"]
+RUN yarn prebuild && yarn build
+
+CMD ["yarn", "run", "prod"]
 
 EXPOSE 9000

@@ -1,5 +1,5 @@
 #Build stage
-FROM cityofsurrey/node:22-debian
+FROM node:22
 
 WORKDIR /app
 

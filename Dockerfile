@@ -10,3 +10,5 @@ RUN corepack enable && yarn install
 COPY . ./
 
 CMD ["yarn", "run", "dev"]
+
+EXPOSE 9000

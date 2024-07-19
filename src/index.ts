@@ -8,14 +8,9 @@ dotenv.config();
 
 const app = new HyperExpress.Server();
 
-const origin = process.env.ORIGIN;
+// const origin = process.env.ORIGIN;
 
-app.use(
-  cors({
-    origin,
-    credentials: true,
-  }),
-);
+app.use(cors());
 
 void bootstrap(app).then((server) => {
   server

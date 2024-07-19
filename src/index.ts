@@ -8,9 +8,11 @@ dotenv.config();
 
 const app = new HyperExpress.Server();
 
+const origin = process.env.ORIGIN;
+
 app.use(
   cors({
-    origin: ['http://localhost', 'http://localhost:5173'],
+    origin,
     credentials: true,
   }),
 );

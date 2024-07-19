@@ -5,6 +5,7 @@ import { type AxiosResponse } from 'axios';
 
 export interface IAuthController {
   authGoogleCallback: (req: IRequest, res: IResponse) => Promise<void>;
+  refreshToken: (req: IRequest, res: IResponse) => Promise<void>;
 }
 
 export interface IGoogleTokenInfo {

@@ -48,7 +48,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   const userService = new UserService(userRepository);
   const authService = new AuthService(userService, authRepository);
   const wishService = new WishService(wishRepository, userService);
-  const profileService = new ProfileService(profileRepository);
+  const profileService = new ProfileService(profileRepository, userService);
 
   /**
    * Controllers

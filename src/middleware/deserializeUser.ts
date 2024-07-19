@@ -1,7 +1,7 @@
 import { type IRequest, type IResponse } from '../common/types';
 import { type MiddlewareNext } from 'hyper-express';
 import { verifyJwt } from '../common/utils';
-import { restoreTokens } from './restoreTokens';
+import { UnauthorizedException } from '../exceptions/UnauthorizedException';
 
 export const deserializeUser = async (req: IRequest, res: IResponse, next: MiddlewareNext): Promise<void> => {
   try {
@@ -13,8 +13,6 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
     }
 
     const accessToken = req.cookies[accessTokenKey];
-    // TODO add different endpoint for refresh token
-    const refreshToken = req.cookies[refreshTokenKey];
 
     if (!accessToken) {
       return;
@@ -26,17 +24,9 @@ export const deserializeUser = async (req: IRequest, res: IResponse, next: Middl
       res.locals.userId = decoded.userId;
     }
 
-    // TODO вынести в отдельный middleware или в authGuard
-    if (expired && refreshToken) {
-      const { accessToken: newAccessToken, refreshToken: newRefreshToken } = await restoreTokens(refreshToken);
-
-      res.cookie(accessTokenKey, newAccessToken);
-      res.cookie(refreshTokenKey, newRefreshToken);
-
-      const result = verifyJwt(newAccessToken);
-
-      res.locals.user = result.decoded;
-    }
+    // if (expired) {
+    //   throw new UnauthorizedException('Access token is expired');
+    // }
   } catch (error) {
     if (error instanceof Error) {
       next(error);

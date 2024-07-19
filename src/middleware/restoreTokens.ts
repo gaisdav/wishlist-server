@@ -5,7 +5,6 @@ import { getUserById } from './getCurrentUser';
 import { UnauthorizedException } from '../exceptions/UnauthorizedException';
 
 export const restoreTokens = async (token: string): Promise<ITokens> => {
-  console.log('restoreTokens');
   const { decoded } = verifyJwt(token);
 
   if (!decoded?.userId) {
@@ -13,7 +12,6 @@ export const restoreTokens = async (token: string): Promise<ITokens> => {
   }
 
   const user = await getUserById(decoded.userId);
-  console.log(user);
   if (!user) {
     throw new UnauthorizedException('User not found');
   }

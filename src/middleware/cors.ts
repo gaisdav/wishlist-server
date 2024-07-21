@@ -10,7 +10,10 @@ const cors = (options: CORSOptions) => {
   return async (request: HyperExpress.Request, response: HyperExpress.Response) => {
     response.header('vary', 'Origin');
     response.header('Access-Control-Allow-Headers', 'content-type');
-    response.header('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
+    response.header(
+      'Access-Control-Allow-Methods',
+      'OPTIONS, POST, GET, PUT, DELETE, PATCH, HEAD, CONNECT, TRACE, PURGE',
+    );
     response.header('Access-Control-Allow-Origin', options.origin);
     response.header('Access-Control-Allow-Credentials', options.credentials.toString());
 

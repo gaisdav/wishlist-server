@@ -16,13 +16,14 @@ import { dataSource } from './dataSource';
 import { ProfileController } from './modules/profile/controller';
 import { ProfileService } from './modules/profile/service';
 import { ProfileRepository } from './modules/profile/repository';
-import cors from './middleware/cors';
+import useCORS from 'hyper-express-cors';
 
 export const bootstrap = async (server: Server): Promise<Server> => {
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? '';
   const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET ?? '';
   const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI ?? '';
-  const origin = process.env.ORIGIN ?? '';
+  const origin = 'https://www.wlist.site/';
+  // const origin = process.env.ORIGIN ?? '';
 
   /**
    * Middlewares
@@ -30,10 +31,11 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   server.use(deserializeUser);
   server.set_error_handler(errorHandler);
   server.set_not_found_handler(notFoundHandler);
-  server.use(cors({ origin, credentials: true }));
+  server.use(useCORS({ origin, credentials: true }));
+
   server.options(
     '/*',
-    cors({
+    useCORS({
       origin,
       credentials: true,
       optionsRoute: true,

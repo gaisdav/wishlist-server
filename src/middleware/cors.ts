@@ -11,7 +11,7 @@ const cors = (options: CORSOptions) => {
     response.header('vary', 'Origin');
     response.header('Access-Control-Allow-Headers', 'content-type');
     response.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH');
-    response.header('Access-Control-Allow-Origin', options.origin);
+    response.header('Access-Control-Allow-Origin', '*');
     response.header('Access-Control-Allow-Credentials', options.credentials.toString());
 
     if (options.optionsRoute === true) {

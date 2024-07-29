@@ -9,7 +9,7 @@ const app = new HyperExpress.Server();
 
 void bootstrap(app).then((server) => {
   server
-    .listen(80)
+    .listen(8080)
     .then(() => {
       console.log('Webserver started on port 80');
     })
@@ -17,3 +17,5 @@ void bootstrap(app).then((server) => {
       console.log('Failed to start server on port 80', error);
     });
 });
+
+export default app;

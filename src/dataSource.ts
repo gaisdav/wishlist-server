@@ -16,6 +16,7 @@ export const dataSource = new DataSource({
   entities: [User, Wish],
   logging: true,
   synchronize: true,
+  ssl: true,
   subscribers: [],
   migrations: [],
 });

@@ -1504,16 +1504,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hyper-express-cors@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "hyper-express-cors@npm:1.0.4"
-  dependencies:
-    hyper-express: "npm:^6.4.5"
-  checksum: 10/53b0395787250d36c0f6814f7833eaf67bd72078f53aa6e37b333873443fa236cbdae0bfeaaded7c5944593ddd7a3e11adeb1fa2bfc4115cc85984d5e982906e
-  languageName: node
-  linkType: hard
-
-"hyper-express@npm:^6.16.4, hyper-express@npm:^6.4.5":
+"hyper-express@npm:^6.16.4":
   version: 6.16.4
   resolution: "hyper-express@npm:6.16.4"
   dependencies:
@@ -3269,7 +3260,6 @@ __metadata:
     eslint: "npm:9.x"
     globals: "npm:^15.8.0"
     hyper-express: "npm:^6.16.4"
-    hyper-express-cors: "npm:^1.0.4"
     jsonwebtoken: "npm:^9.0.2"
     nodemon: "npm:^3.1.4"
     passport: "npm:^0.7.0"

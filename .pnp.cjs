@@ -40,7 +40,6 @@ const RAW_RUNTIME_STATE =
           ["eslint", "npm:9.6.0"],\
           ["globals", "npm:15.8.0"],\
           ["hyper-express", "npm:6.16.4"],\
-          ["hyper-express-cors", "npm:1.0.4"],\
           ["jsonwebtoken", "npm:9.0.2"],\
           ["nodemon", "npm:3.1.4"],\
           ["passport", "npm:0.7.0"],\
@@ -1923,16 +1922,6 @@ const RAW_RUNTIME_STATE =
           ["type-is", "npm:1.6.18"],\
           ["typed-emitter", "npm:2.1.0"],\
           ["uWebSockets.js", "https://github.com/uNetworking/uWebSockets.js.git#commit=8fa05571bf6ea95be8966ad313d9d39453e381ae"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["hyper-express-cors", [\
-      ["npm:1.0.4", {\
-        "packageLocation": "./.yarn/cache/hyper-express-cors-npm-1.0.4-e5b9fb2526-53b0395787.zip/node_modules/hyper-express-cors/",\
-        "packageDependencies": [\
-          ["hyper-express-cors", "npm:1.0.4"],\
-          ["hyper-express", "npm:6.16.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3952,7 +3941,6 @@ const RAW_RUNTIME_STATE =
           ["eslint", "npm:9.6.0"],\
           ["globals", "npm:15.8.0"],\
           ["hyper-express", "npm:6.16.4"],\
-          ["hyper-express-cors", "npm:1.0.4"],\
           ["jsonwebtoken", "npm:9.0.2"],\
           ["nodemon", "npm:3.1.4"],\
           ["passport", "npm:0.7.0"],\

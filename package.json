@@ -7,6 +7,7 @@
     "prod": "node dist/index.js",
     "prebuild": "rm -rf ./dist",
     "build": "tsc",
+    "deploy": "yarn run prebuild && yarn run build && vercel --prod",
     "preview": "yarn run build && node dist/index.js",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
@@ -35,7 +36,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "hyper-express": "^6.16.4",
-    "hyper-express-cors": "^1.0.4",
     "jsonwebtoken": "^9.0.2",
     "passport": "^0.7.0",
     "pg": "^8.12.0",

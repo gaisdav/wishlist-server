@@ -11,7 +11,7 @@ void bootstrap(app).then((server) => {
   server
     .listen(8080)
     .then(() => {
-      console.log('Webserver started on port 80');
+      console.log('Webserver started on port 8080');
     })
     .catch((error: unknown) => {
       console.log('Failed to start server on port 80', error);

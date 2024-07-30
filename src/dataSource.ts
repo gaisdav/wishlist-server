@@ -1,4 +1,3 @@
-import process from 'process';
 import { User } from './modules/user/entity';
 import { Wish } from './modules/wish/entity';
 import { DataSource } from 'typeorm';

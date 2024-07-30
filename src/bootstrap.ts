@@ -8,7 +8,6 @@ import { Wish } from './modules/wish/entity';
 import { WishRepository } from './modules/wish/repository';
 import { WishService } from './modules/wish/service';
 import { WishController } from './modules/wish/controller';
-import process from 'process';
 import { AuthService } from './modules/auth/service';
 import { AuthRepository } from './modules/auth/repository';
 import { errorHandler, notFoundHandler, deserializeUser } from './middleware';

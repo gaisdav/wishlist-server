@@ -2,12 +2,13 @@
   "name": "wishlist-server",
   "packageManager": "yarn@4.3.1",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
     "dev": "npx nodemon",
     "prod": "node dist/index.js",
     "prebuild": "rm -rf ./dist",
     "build": "tsc",
-    "deploy": "yarn run prebuild && yarn run build && vercel --prod",
+    "deploy": "yarn run ts.check && yarn run prebuild && yarn run build && vercel --prod",
     "preview": "yarn run build && node dist/index.js",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"

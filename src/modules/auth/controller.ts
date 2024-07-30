@@ -2,7 +2,6 @@ import { type Server } from 'hyper-express';
 import { type IAuthController, type IAuthServices } from './types';
 import { type IRequest, type IResponse } from '../../common/types';
 import { EEndpoint } from '../../common/endpoints';
-import process from 'process';
 import { generateTokens, restoreTokens } from '../../middleware';
 
 export class AuthController implements IAuthController {

@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+export const isDev = process.env.NODE_ENV === 'development';
+
 export const dataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST,
@@ -15,7 +17,7 @@ export const dataSource = new DataSource({
   entities: [User, Wish],
   logging: true,
   synchronize: true,
-  ssl: true,
+  ssl: !isDev,
   subscribers: [],
   migrations: [],
 });

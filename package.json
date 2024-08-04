@@ -7,9 +7,8 @@
     "dev": "yarn run prebuild && yarn run build && npx nodemon",
     "prod": "node dist/index.js",
     "prebuild": "rm -rf ./dist",
-    "build": "rollup --config",
-    "deploy": "yarn run ts.check && yarn run prebuild && yarn run build && vercel --prod",
-    "preview": "yarn run prebuild && yarn run build && node dist/index.js",
+    "build": "yarn run ts.check && yarn run prebuild && rollup --config",
+    "deploy": "yarn run build && vercel --prod",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
   },

@@ -14,7 +14,6 @@ export class AuthController implements IAuthController {
   }
 
   authGoogleCallback = async (req: IRequest, res: IResponse): Promise<void> => {
-    console.log('authGoogleCallback');
     const accessTokenKey = process.env.JWT_ACCESS_KEY;
     const refreshTokenKey = process.env.JWT_REFRESH_KEY;
     const origin = process.env.ORIGIN;
@@ -32,8 +31,6 @@ export class AuthController implements IAuthController {
     const { access_token: googleAccessToken, token_type: tokenType } = await this.authService.getGoogleTokens(code);
 
     const user = await this.authService.getGoogleUser(tokenType, googleAccessToken);
-
-    console.log(user);
 
     const { accessToken, refreshToken } = generateTokens(user.id);
 

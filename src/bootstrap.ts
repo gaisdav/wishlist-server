@@ -29,8 +29,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   server.use(deserializeUser);
   server.set_error_handler(errorHandler);
   server.set_not_found_handler(notFoundHandler);
-  console.log(origin);
-  server.use(cors({ origin, credentials: true }));
+  server.use(cors({ origin, credentials: true, optionsRoute: true }));
 
   // server.options(
   //   '/*',

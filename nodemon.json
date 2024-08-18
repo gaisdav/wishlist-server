@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": ".ts,.js",
   "ignore": [],
-  "exec": "node ./dist/index.js"
+  "exec": "node -v && node --experimental-vm-modules --trace-warnings ./dist/index.js"
 }

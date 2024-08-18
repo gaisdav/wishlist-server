@@ -14,11 +14,17 @@ export class AuthController implements IAuthController {
   }
 
   authGoogleCallback = async (req: IRequest, res: IResponse): Promise<void> => {
+    console.log('authGoogleCallback');
     const accessTokenKey = process.env.JWT_ACCESS_KEY;
     const refreshTokenKey = process.env.JWT_REFRESH_KEY;
+    const origin = process.env.ORIGIN;
 
     if (!accessTokenKey || !refreshTokenKey) {
       throw new Error('Access token or refresh token key is not provided');
+    }
+
+    if (!origin) {
+      throw new Error('Origin url is not provided');
     }
 
     const { code } = req.query;
@@ -27,11 +33,13 @@ export class AuthController implements IAuthController {
 
     const user = await this.authService.getGoogleUser(tokenType, googleAccessToken);
 
+    console.log(user);
+
     const { accessToken, refreshToken } = generateTokens(user.id);
 
     res.cookie(accessTokenKey, accessToken);
     res.cookie(refreshTokenKey, refreshToken);
-    res.redirect('http://localhost:5173/');
+    res.redirect(origin);
   };
 
   refreshToken = async (req: IRequest, res: IResponse): Promise<void> => {

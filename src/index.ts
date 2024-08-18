@@ -5,7 +5,7 @@ import { bootstrap } from './bootstrap';
 
 dotenv.config();
 
-const app = new HyperExpress.Server();
+export const app = new HyperExpress.Server();
 
 void bootstrap(app).then((server) => {
   server

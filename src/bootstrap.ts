@@ -32,14 +32,14 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   console.log(origin);
   server.use(cors({ origin, credentials: true }));
 
-  server.options(
-    '/*',
-    cors({
-      origin,
-      credentials: true,
-      optionsRoute: true,
-    }),
-  );
+  // server.options(
+  //   '/*',
+  //   cors({
+  //     origin,
+  //     credentials: true,
+  //     optionsRoute: true,
+  //   }),
+  // );
 
   /**
    * Initialize database connection

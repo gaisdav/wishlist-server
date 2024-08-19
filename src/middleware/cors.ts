@@ -14,10 +14,8 @@ export const cors = (options: CORSOptions) => {
     response.header('Access-Control-Allow-Origin', options.origin);
     response.header('Access-Control-Allow-Credentials', options.credentials.toString());
 
-    if (request.method === 'OPTIONS' && options.optionsRoute) {
-      console.log(request);
-      console.log(response);
-      return response.sendStatus(200);
-    }
+    // if (request.method === 'OPTIONS' && options.optionsRoute) {
+    //   return response.sendStatus(200);
+    // }
   };
 };

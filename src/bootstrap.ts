@@ -1,4 +1,4 @@
-import { type Server } from 'hyper-express';
+import HyperExpress, { type Server } from 'hyper-express';
 import { AuthController } from './modules/auth/controller';
 import { UserController } from './modules/user/controller';
 import { User } from './modules/user/entity';
@@ -29,15 +29,10 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   server.use(deserializeUser);
   server.set_error_handler(errorHandler);
   server.set_not_found_handler(notFoundHandler);
-  server.use(cors({ origin, credentials: true, optionsRoute: true }));
-  // server.options(
-  //   '/*',
-  //   cors({
-  //     origin,
-  //     credentials: true,
-  //     optionsRoute: true,
-  //   }),
-  // );
+  server.use(cors({ origin, credentials: true }));
+  server.options('/*', async (_, response) => {
+    return response.sendStatus(200);
+  });
 
   /**
    * Initialize database connection

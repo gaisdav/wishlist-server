@@ -1,4 +1,4 @@
-import HyperExpress, { type Server } from 'hyper-express';
+import { type Server } from 'hyper-express';
 import { AuthController } from './modules/auth/controller';
 import { UserController } from './modules/user/controller';
 import { User } from './modules/user/entity';

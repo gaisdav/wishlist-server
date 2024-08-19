@@ -29,16 +29,15 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   server.use(deserializeUser);
   server.set_error_handler(errorHandler);
   server.set_not_found_handler(notFoundHandler);
-  server.use(cors({ origin, credentials: true, optionsRoute: true }));
-
-  // server.options(
-  //   '/*',
-  //   cors({
-  //     origin,
-  //     credentials: true,
-  //     optionsRoute: true,
-  //   }),
-  // );
+  server.use(cors({ origin, credentials: true }));
+  server.options(
+    '/*',
+    cors({
+      origin,
+      credentials: true,
+      optionsRoute: true,
+    }),
+  );
 
   /**
    * Initialize database connection

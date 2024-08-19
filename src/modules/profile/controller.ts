@@ -26,7 +26,7 @@ export class ProfileController implements IProfileController {
 
     const profile = await this.service.updateProfile(Number(id), body);
 
-    res.locals.user = profile;
+    res.locals.userId = profile.id;
 
     res.json(profile);
   };

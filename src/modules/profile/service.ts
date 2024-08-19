@@ -30,7 +30,7 @@ export class ProfileService extends AbstractService implements IProfileService {
     const profileDTO = plainToInstance(UpdateProfileDTO, data);
     await this.validate(profileDTO);
 
-    const user = await this.userService.findOneByUsername(profileDTO.username);
+    const user = await this.userService.findOneById(id);
 
     if (user && user.id !== id) {
       throw new ForbiddenException('Username already exists');

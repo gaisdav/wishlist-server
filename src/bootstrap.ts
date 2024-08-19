@@ -31,7 +31,7 @@ export const bootstrap = async (server: Server): Promise<Server> => {
   server.set_not_found_handler(notFoundHandler);
   server.use(cors({ origin, credentials: true }));
   server.options('/*', async (_, response) => {
-    return response.sendStatus(200);
+    response.send('');
   });
 
   /**

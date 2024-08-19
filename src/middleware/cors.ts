@@ -17,5 +17,8 @@ export const cors = (options: CORSOptions) => {
     if (options.optionsRoute === true) {
       response.send('');
     }
+
+    console.log(request);
+    console.log(response);
   };
 };

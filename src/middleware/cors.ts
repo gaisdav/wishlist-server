@@ -14,11 +14,11 @@ export const cors = (options: CORSOptions) => {
     response.header('Access-Control-Allow-Origin', options.origin);
     response.header('Access-Control-Allow-Credentials', options.credentials.toString());
 
-    if (options.optionsRoute === true) {
-      response.send('');
-    }
-
     console.log(request);
     console.log(response);
+
+    if (request.method === 'OPTIONS' && options.optionsRoute) {
+      return response.sendStatus(200);
+    }
   };
 };

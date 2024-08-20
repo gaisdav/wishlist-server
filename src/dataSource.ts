@@ -15,7 +15,7 @@ export const dataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [User, Wish],
-  logging: true,
+  logging: isDev,
   synchronize: true,
   ssl: !isDev,
   subscribers: [],
